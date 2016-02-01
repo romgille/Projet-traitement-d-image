@@ -5,4 +5,4 @@ Contributeurs : Romain Gille, Yannick Ezvan.
 
 Comparer deux images :
 * Colorimétrie (Histogramme)
-* Luminosité ($30% R + 60% G + 10% B$)
+* Luminosité (30% R + 60% G + 10% B)

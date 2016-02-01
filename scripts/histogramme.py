@@ -1,7 +1,9 @@
 import Image
 import sys
 import os
+from pathlib import Path
 
+p = Path('.')
 histosPath = os.path.abspath("./histogrammes")
 photosPath = os.path.abspath("./photos")
 scriptsPath = os.path.abspath("./scripts")
@@ -66,3 +68,4 @@ def drawHistogram(histo):
 
 im = Image.open(sys.argv[1])
 drawHistogram(buildHistogram(im)).save(histosPath + "/histo.jpg")
+print(p)
