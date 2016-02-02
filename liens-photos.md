@@ -17,3 +17,7 @@
 
 # Liens comparaison Histogramme
 [Distance de Bhattacharyya](https://fr.wikipedia.org/wiki/Distance_de_Bhattacharyya)
+
+[Comparaison de deux images](http://perso.telecom-paristech.fr/~gousseau/gretsi.pdf)
+
+[Détection d'images similaires](http://benjaminbillet.fr/blog/index.php?article1/detection-images-similaires)
