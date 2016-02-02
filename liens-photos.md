@@ -14,3 +14,6 @@
 [Histogramme en photo](http://www.avecunphotographe.fr/histogramme-en-photo/)
 
 [Cours notions de traitements d'images](http://www.unit.eu/cours/videocommunication/Transformation_ponctuelle_histogramme.pdf)
+
+# Liens comparaison Histogramme
+[Distance de Bhattacharyya](https://fr.wikipedia.org/wiki/Distance_de_Bhattacharyya)
