@@ -234,7 +234,6 @@ def blur(im, radius):
                     val = pix[k, l]
                     somme = somme + val
                     count += 1
-
             rpix[i, j] = somme/count
     return result
 
@@ -253,7 +252,6 @@ def dilate(im, radius):
                     val = pix[k, l]
                     if(maxV < val):
                         maxV = val
-
             rpix[i, j] = maxV
     return result
 
@@ -272,7 +270,6 @@ def erode(im, radius):
                     val = pix[k, l]
                     if(minV > val):
                         minV = val
-
             rpix[i, j] = minV
     return result
 
@@ -315,6 +312,7 @@ def maxFilter(im, radius):
                 rpix[i, j] = pix[i, j]
     return result
 
+
 def minFilter(im, radius):
     pix = im.load()
     result = Image.new("L", im.size)
@@ -344,8 +342,173 @@ def sobel(im,):
     for i in range(1, im.size[0] - 1):
         for j in range(1, im.size[1] - 1):
             gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1] + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
-
             gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1] + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
             g = int(cmath.sqrt((gX*gX)+(gY*gY)).real)
             rpix[i, j] = g
     return result
+
+
+def normalize(images):
+    w = []
+    h = []
+    for i in images:
+        w.append(i.size[0])
+        h.append(i.size[1])
+    w.sort()
+    h.sort()
+    if w[0] == w[-1] and h[0] == h[-1]:
+        return images
+    else:
+        newImages = []
+        for i in images:
+            newImages.append(crop(i, 0, 0, w[0], h[0]))
+        newImagesT = tuple(newImages)
+        return newImagesT
+
+
+def add(a, b):
+    newA, newB = normalize([a, b])
+    pixA = newA.load()
+    pixB = newB.load()
+    newImage = Image.new("RGB", a.size)
+    pix = newImage.load()
+    for i in range(0, newImage.size[0]):
+        for j in range(0, newImage.size[1]):
+            valA = pixA[i, j]
+            valB = pixB[i, j]
+            pix[i, j] = (valA[0] + valB[0], valA[1] + valB[1], valA[2] + valB[2])
+    return newImage
+
+
+def product(a, b):
+    newA, newB = normalize([a, b])
+    pixA = newA.load()
+    pixB = newB.load()
+    type(pixA)
+    newImage = Image.new("RGB", a.size)
+    pix = newImage.load()
+    for i in range(0, newImage.size[0]):
+        for j in range(0, newImage.size[1]):
+            valA = pixA[i, j]
+            valB = pixB[i, j]
+            pix[i, j] = ((valA[0] * valB[0])/255, (valA[1] * valB[1])/255, (valA[2] * valB[2])/255)
+    return newImage
+
+
+def diff(a, b):
+    newA, newB = normalize([a, b])
+    pixA = newA.load()
+    pixB = newB.load()
+    type(pixA)
+    newImage = Image.new("RGB", a.size)
+    pix = newImage.load()
+    for i in range(0, newImage.size[0]):
+        for j in range(0, newImage.size[1]):
+            valA = pixA[i, j]
+            valB = pixB[i, j]
+            pix[i, j] = (abs(valA[0] - valB[0]), abs(valA[1] - valB[1]), abs(valA[2] - valB[2]))
+    return newImage
+
+
+def copy(a, b, m):
+    newA, newB, newM = normalize([a, b, m])
+    pixA = newA.load()
+    pixB = newB.load()
+    pixM = newM.load()
+    newImage = Image.new("RGB", a.size)
+    pix = newImage.load()
+    for i in range(0, newImage.size[0]):
+        for j in range(0, newImage.size[1]):
+            if pixM[i, j] == (0, 0, 0):
+                pix[i, j] = pixB[i, j]
+            else:
+                pix[i, j] = pixA[i, j]
+    return newImage
+
+
+def max(images):
+    imgs = normalize(images)
+    newImage = Image.new("RGB", imgs[0].size)
+    pix = newImage.load()
+    for x in range(0, newImage.size[0]):
+        for y in range(0, newImage.size[1]):
+            valR = []
+            valG = []
+            valB = []
+            for i in imgs:
+                newPix = i.load()
+                valR.append(newPix[x, y][0])
+                valG.append(newPix[x, y][1])
+                valB.append(newPix[x, y][2])
+            valR.sort()
+            valG.sort()
+            valB.sort()
+            pix[x, y] = (valR[-1], valG[-1], valB[-1])
+    return newImage
+
+
+def min(images):
+    imgs = normalize(images)
+    newImage = Image.new("RGB", imgs[0].size)
+    pix = newImage.load()
+    for x in range(0, newImage.size[0]):
+        for y in range(0, newImage.size[1]):
+            valR = []
+            valG = []
+            valB = []
+            for i in imgs:
+                newPix = i.load()
+                valR.append(newPix[x, y][0])
+                valG.append(newPix[x, y][1])
+                valB.append(newPix[x, y][2])
+            valR.sort()
+            valG.sort()
+            valB.sort()
+            pix[x, y] = (valR[0], valG[0], valB[0])
+    return newImage
+
+
+def mediane(images):
+    imgs = normalize(images)
+    newImage = Image.new("RGB", imgs[0].size)
+    pix = newImage.load()
+    for x in range(0, newImage.size[0]):
+        for y in range(0, newImage.size[1]):
+            valR = []
+            valG = []
+            valB = []
+            for i in imgs:
+                newPix = i.load()
+                valR.append(newPix[x, y][0])
+                valG.append(newPix[x, y][1])
+                valB.append(newPix[x, y][2])
+            valR.sort()
+            valG.sort()
+            valB.sort()
+            pix[x, y] = (valR[len(valR)/2], valG[len(valG)/2], valB[len(valB)/2])
+    return newImage
+
+
+def avg(images):
+    imgs = normalize(images)
+    newImage = Image.new("RGB", imgs[0].size)
+    pix = newImage.load()
+    for x in range(0, newImage.size[0]):
+        for y in range(0, newImage.size[1]):
+            valR = []
+            valG = []
+            valB = []
+            for i in imgs:
+                newPix = i.load()
+                valR.append(newPix[x, y][0])
+                valG.append(newPix[x, y][1])
+                valB.append(newPix[x, y][2])
+            r = 0
+            g = 0
+            b = 0
+            for j in range(0, len(valR)-1):
+                r += valR[j]
+                g += valG[j]
+                b += valB[j]
+            pix[x, y] = (r/len(valR), g/len(valG), b/len(valB))
+    return newImage

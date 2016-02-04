@@ -1,7 +1,7 @@
 # Projet-traitement-d-image
 Projet de E2 traitement d'image en python
 
-Contributeurs : Romain Gille, Yannick Ezvan.
+Contributeurs : Romain Gille (romgille), Yannick Ezvan (nonock).
 
 Comparer deux images :
 * Colorimétrie (Histogramme)
