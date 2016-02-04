@@ -38,11 +38,11 @@ def toRGB(im):
     rgb = Image.new("RGB", im.size)
     pix = im.load()
     rgbPix = rgb.load()
-    epsilon = 0.00001
+    #epsilon = 0.00001
     for Y in range(im.size[1]):
         for X in range(im.size[0]):
             h, s, v = pix[X, Y]
-            h * = 3.6/2.55
+            h *= 3.6/2.55
             s = s/255.0
             v = v/255.0
             c = v*s

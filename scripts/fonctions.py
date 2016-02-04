@@ -229,7 +229,9 @@ def blur(im, radius):
             count = 0
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     val = pix[k, l]
                     somme = somme + val
@@ -247,7 +249,9 @@ def dilate(im, radius):
             maxV = 0
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     val = pix[k, l]
                     if(maxV < val):
@@ -265,7 +269,9 @@ def erode(im, radius):
             minV = 255
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     val = pix[k, l]
                     if(minV > val):
@@ -283,7 +289,9 @@ def median(im, radius):
             val = []
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     val.append(pix[k, l])
                 val.sort()
@@ -300,7 +308,9 @@ def maxFilter(im, radius):
             val = []
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     if(k == i) and (l == j):
                         continue
@@ -322,7 +332,9 @@ def minFilter(im, radius):
             val = []
             for k in range(i - radius, i + radius+1):
                 for l in range(j - radius, j + radius+1):
-                    if(k < 0) or (k > im.size[0] - 1) or (l < 0) or (l > im.size[1] - 1):
+                    kOut = (k < 0) or (k > im.size[0] - 1)
+                    lOut = (l < 0) or (l > im.size[1] - 1)
+                    if kOut or lOut:
                         continue
                     if(k == i) and (l == j):
                         continue
@@ -341,8 +353,10 @@ def sobel(im,):
     rpix = result.load()
     for i in range(1, im.size[0] - 1):
         for j in range(1, im.size[1] - 1):
-            gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1] + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
-            gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1] + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
+            gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1]
+            + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
+            gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1]
+            + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
             g = int(cmath.sqrt((gX*gX)+(gY*gY)).real)
             rpix[i, j] = g
     return result
@@ -376,7 +390,9 @@ def add(a, b):
         for j in range(0, newImage.size[1]):
             valA = pixA[i, j]
             valB = pixB[i, j]
-            pix[i, j] = (valA[0] + valB[0], valA[1] + valB[1], valA[2] + valB[2])
+            pix[i, j] = (valA[0] + valB[0],
+                         valA[1] + valB[1],
+                         valA[2] + valB[2])
     return newImage
 
 
@@ -391,7 +407,9 @@ def product(a, b):
         for j in range(0, newImage.size[1]):
             valA = pixA[i, j]
             valB = pixB[i, j]
-            pix[i, j] = ((valA[0] * valB[0])/255, (valA[1] * valB[1])/255, (valA[2] * valB[2])/255)
+            pix[i, j] = ((valA[0] * valB[0])/255,
+                         (valA[1] * valB[1])/255,
+                         (valA[2] * valB[2])/255)
     return newImage
 
 
@@ -406,7 +424,9 @@ def diff(a, b):
         for j in range(0, newImage.size[1]):
             valA = pixA[i, j]
             valB = pixB[i, j]
-            pix[i, j] = (abs(valA[0] - valB[0]), abs(valA[1] - valB[1]), abs(valA[2] - valB[2]))
+            pix[i, j] = (abs(valA[0] - valB[0]),
+                         abs(valA[1] - valB[1]),
+                         abs(valA[2] - valB[2]))
     return newImage
 
 
@@ -485,7 +505,9 @@ def mediane(images):
             valR.sort()
             valG.sort()
             valB.sort()
-            pix[x, y] = (valR[len(valR)/2], valG[len(valG)/2], valB[len(valB)/2])
+            pix[x, y] = (valR[len(valR)/2],
+                         valG[len(valG)/2],
+                         valB[len(valB)/2])
     return newImage
 
 
