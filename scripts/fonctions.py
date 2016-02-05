@@ -555,9 +555,9 @@ def compDifImages(im):
                 sR = sR + valR[i]
                 sG = sG + valG[i]
                 sB = sB = valB[i]
-            if sR == 0 and sG == 0 and sR == 0:
+            if sR == 0 and sG == 0 and sB == 0:
                 comp = comp + 0
-            else :
+            else:
                 comp = comp + 1
     prcentge = (comp/taille)*100
     prcentge = round(prcentge,3)
