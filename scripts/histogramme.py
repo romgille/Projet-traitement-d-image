@@ -1,10 +1,11 @@
 import Image
 import sys
-import variables
-import fonctions
+from variables import histosPath
+from fonctions import buildHistogram
+from fonctions import drawHistogram
 
 im = Image.open(sys.argv[1])
 parts = (sys.argv[1].split("/"))[1].split(".")
-newIm = fonctions.buildHistogram(im)
+newIm = buildHistogram(im)
 pathHistoFile = "/" + parts[0] + "_histo.jpg"
-fonctions.drawHistogram(newIm).save(str(variables.histosPath) + pathHistoFile)
+drawHistogram(newIm).save(str(histosPath) + pathHistoFile)
