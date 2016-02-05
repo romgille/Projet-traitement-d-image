@@ -25,7 +25,7 @@ Clone the repository :
 
 Run the script :
 
-`./run.sh path/to/your/picture/picture.jpg`
+`./run.sh path/to/file/picture-to-compare1.jpg path/to/file/picture-to-compare2.jpg`
 
 You can try with the picture on `photos/` folder
 
