@@ -25,7 +25,9 @@ Clone the repository :
 
 Run the script :
 
-`./run.sh`
+`./run.sh path_to_your_picture/picture.jpg`
+
+You can try with the picture on `photos/` folder
 
 if it does not work :
 
