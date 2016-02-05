@@ -9,9 +9,27 @@ Comparer deux images :
 * Position du sujet (règle des tiers)
 
 
+<<<<<<< HEAD
 Critères de ressemblance :
 * Comparaison des histogrammes RGB                              20%
 * Comparaison des histogrammes de luminosités                   20%
 * Comparaison des images sous le filtre de sobel                20%
 * Comparaison des histogrammes L                                20%
 * Différence entre les deux images puis voir si noir partout    20%
+=======
+# How To
+
+Clone the repository :
+
+`git clone https://github.com/romgille/Projet-traitement-d-image.git`
+
+Run the script :
+
+`./run.sh`
+
+if it does not work :
+
+`chmod +x run.sh`
+
+and try to run the script again.
+>>>>>>> 85e15118f45aaee2a1d70d8b2f82665ab4ef1347
