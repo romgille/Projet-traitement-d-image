@@ -537,7 +537,7 @@ def avg(images):
 
 def compDifImages(im):
     pix = im.load()
-    comp = 0
+    comp = 0.
     taille = im.size[0]*im.size[1]
     prcentge = 0
     for x in range(0, im.size[0]):
@@ -560,4 +560,6 @@ def compDifImages(im):
             else :
                 comp = comp + 1
     prcentge = (comp/taille)*100
+    prcentge = round(prcentge,3)
     print prcentge, "%", "de difference"
+    return prcentge
