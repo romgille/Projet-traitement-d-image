@@ -534,3 +534,30 @@ def avg(images):
                 b += valB[j]
             pix[x, y] = (r/len(valR), g/len(valG), b/len(valB))
     return newImage
+
+def compDifImages(im):
+    pix = im.load()
+    comp = 0
+    taille = im.size[0]*im.size[1]
+    prcentge = 0
+    for x in range(0, im.size[0]):
+        valR = []
+        valG = []
+        valB = []
+        sR = 0
+        sG = 0
+        sB = 0
+        for y in range(0, im.size[1]):
+            valR.append(pix[x, y][0])
+            valG.append(pix[x, y][1])
+            valB.append(pix[x, y][2])
+            for i in range(0, len(valR)):
+                sR = sR + valR[i]
+                sG = sG + valG[i]
+                sB = sB = valB[i]
+            if sR == 0 and sG == 0 and sR == 0:
+                comp = comp + 0
+            else :
+                comp = comp + 1
+    prcentge = (comp/taille)*100
+    print prcentge, "%", "de difference"
