@@ -375,7 +375,10 @@ def normalize(images):
     else:
         newImages = []
         for i in images:
-            newImages.append(crop(i, 0, 0, w[0], h[0]))
+            if i.mode == "L":
+                newImages.append(cropGris(i, 0, 0, w[0], h[0]))
+            if i.mode == "RGB":
+                newImages.append(crop(i, 0, 0, w[0], h[0]))
         newImagesT = tuple(newImages)
         return newImagesT
 
@@ -548,18 +551,61 @@ def compDifImages(im):
         sG = 0
         sB = 0
         for y in range(0, im.size[1]):
-            valR.append(pix[x, y][0])
-            valG.append(pix[x, y][1])
-            valB.append(pix[x, y][2])
-            for i in range(0, len(valR)):
-                sR = sR + valR[i]
-                sG = sG + valG[i]
-                sB = sB = valB[i]
-            if sR == 0 and sG == 0 and sB == 0:
+            valR = pix[x, y][0]
+            valG = pix[x, y][1]
+            valB = pix[x, y][2]
+            if 0 <= valR <= 32 and 0 <= valG <= 32 and 0 <= valB <= 32:
                 comp = comp + 0
-            else:
+            else :
                 comp = comp + 1
     prcentge = (comp/taille)*100
     prcentge = round(prcentge,3)
     print prcentge, "%", "de difference"
     return prcentge
+
+def compDifImagesGris(im):
+    pix = im.load()
+    comp = 0.
+    taille = im.size[0]*im.size[1]
+    prcentge = 0
+    for x in range(0, im.size[0]):
+        val = []
+        s = 0
+        for y in range(0, im.size[1]):
+            #val.append(pix[x, y])
+            s = pix[x, y]
+            #print s
+            if  0 <= s <= 15:
+                comp = comp + 0
+            else :
+                comp = comp + 1
+    #print comp
+    #print taille
+    prcentge = (comp/taille)*100
+    prcentge = round(prcentge,3)
+    print prcentge, "%", "de difference"
+    return prcentge
+
+def diffGris(A, B):
+    a,b = normalize([A, B])
+    pixa = a.load()
+    pixb = b.load()
+    newIm = Image.new("L", a.size)
+    pix1 = newIm.load()
+    for i in range(0, newIm.size[0]):
+        for j in range(0, newIm.size[1]):
+            val1 = pixa[i, j]
+            val2 = pixb[i, j]
+            val = abs(val1 - val2)
+            pix1[i, j] = val
+    return newIm
+
+
+def cropGris(im, x, y, w, h):
+    pix = im.load()
+    newIm = Image.new("L", (w, h))
+    pix1 = newIm.load()
+    for i in range(x, x+w):
+        for j in range(y, y + h):
+            pix1[i-x, j-y] = pix[i, j]
+    return newIm
