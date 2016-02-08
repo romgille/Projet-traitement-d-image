@@ -1,5 +1,6 @@
-import Image
+from PIL import Image
 import cmath
+from pylab import log
 
 
 def drawPixel(im, x, y, color):
@@ -608,3 +609,16 @@ def cropGris(im, x, y, w, h):
         for j in range(y, y + h):
             pix1[i-x, j-y] = pix[i, j]
     return newIm
+
+
+def comparaisonHisto(im1, im2, facteur):
+    newIm1, newIm2 = normalize([im1, im2])
+    distance = 0.
+    histo1 = buildHistogram(newIm1)
+    histo2 = buildHistogram(newIm2)
+    for i in range(0, 255):
+            distance += (histo1[0][i] *
+                         histo2[0][i])**facteur
+    newDistance = -log(distance)
+    newDistance = round(newDistance, 3)
+    print(newDistance)

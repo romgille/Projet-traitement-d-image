@@ -34,6 +34,9 @@ do
 
 done
 
+  # Comparer les histogrammes
+  python scripts/compHistos.py $1 $2
+
 # --- COMPARAISON COULEUR PIXELS ---
 # Compare le nombre de pixels différents dans les images
 python scripts/cmpImages.py $1 $2
