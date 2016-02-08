@@ -538,6 +538,7 @@ def avg(images):
             pix[x, y] = (r/len(valR), g/len(valG), b/len(valB))
     return newImage
 
+
 def compDifImages(im):
     pix = im.load()
     comp = 0.
@@ -547,21 +548,19 @@ def compDifImages(im):
         valR = []
         valG = []
         valB = []
-        sR = 0
-        sG = 0
-        sB = 0
         for y in range(0, im.size[1]):
             valR = pix[x, y][0]
             valG = pix[x, y][1]
             valB = pix[x, y][2]
             if 0 <= valR <= 32 and 0 <= valG <= 32 and 0 <= valB <= 32:
                 comp = comp + 0
-            else :
+            else:
                 comp = comp + 1
     prcentge = (comp/taille)*100
-    prcentge = round(prcentge,3)
+    prcentge = round(prcentge, 3)
     print prcentge, "%", "de difference"
     return prcentge
+
 
 def compDifImagesGris(im):
     pix = im.load()
@@ -569,25 +568,25 @@ def compDifImagesGris(im):
     taille = im.size[0]*im.size[1]
     prcentge = 0
     for x in range(0, im.size[0]):
-        val = []
         s = 0
         for y in range(0, im.size[1]):
             #val.append(pix[x, y])
             s = pix[x, y]
             #print s
-            if  0 <= s <= 15:
+            if 0 <= s <= 15:
                 comp = comp + 0
-            else :
+            else:
                 comp = comp + 1
     #print comp
     #print taille
     prcentge = (comp/taille)*100
-    prcentge = round(prcentge,3)
+    prcentge = round(prcentge, 3)
     print prcentge, "%", "de difference"
     return prcentge
 
+
 def diffGris(A, B):
-    a,b = normalize([A, B])
+    a, b = normalize([A, B])
     pixa = a.load()
     pixb = b.load()
     newIm = Image.new("L", a.size)
