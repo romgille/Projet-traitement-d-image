@@ -6,7 +6,9 @@ then
   then
     if test -f $2
     then
+      echo ""
       echo "Traitement des images en cours"
+      echo ""
     else
       echo "Votre deuxième fichier à comparer n'existe pas"
       exit 0
@@ -23,6 +25,7 @@ fi
 
 # --- HISTOGRAMMES ---
 # Supprimer tous les histogrammes créés précedemment
+echo "Suppression des histogrammes précédents :"
 rm histogrammes/* -rv
 
 for args in $@
@@ -30,11 +33,14 @@ do
   
   # Créer les histogrammes des images concernés
   python scripts/histogramme.py $args
+  echo ""
   echo "Histogramme de $args créé dans histogrammes/"
+  echo ""
 
 done
 
   # Comparer les histogrammes
+  echo ""
   python scripts/compHistos.py $1 $2
 
 # --- COMPARAISON COULEUR PIXELS ---

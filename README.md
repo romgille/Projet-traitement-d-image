@@ -3,11 +3,11 @@ Projet de E2 traitement d'image en python
 
 Contributeurs : Romain Gille (romgille), Yannick Ezvan (nonock).
 
-**But du programme**
+##But du programme
 
 Faire la comparaison entre deux images et dire si elles se ressembles
 
-**Critères de ressemblance :**
+##Critères de ressemblance :
 
 * Comparaison des histogrammes RGB                              20%
 * Comparaison des histogrammes de luminosités                   20%
@@ -15,16 +15,17 @@ Faire la comparaison entre deux images et dire si elles se ressembles
 * Comparaison des histogrammes L                                20%
 * Différence entre les deux images puis voir si noir partout    20%
 
-**Déroulement du programme**
+##Déroulement du programme
 
 * Test du nombre d'images passé en arguments
 * Création des histogrammes des images concernées
+* Comparaison des histogrammes en différents facteurs
 * Comparaison de la différence des images
 (D'autre à venir)
 
 
+**Comparer deux images :**
 
-Comparer deux images :
 * Colorimétrie (Histogramme)
 * Luminosité (30% R + 60% G + 10% B)
 * Position du sujet (règle des tiers)
