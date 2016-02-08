@@ -1,6 +1,6 @@
 from PIL import Image
 import cmath
-from pylab import log
+from math import log
 
 
 def drawPixel(im, x, y, color):
