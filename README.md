@@ -3,11 +3,9 @@ Projet de E2 traitement d'image en python
 
 Contributeurs : Romain Gille (romgille), Yannick Ezvan (nonock).
 
-Comparer deux images :
-* Colorimétrie (Histogramme)
-* Luminosité (30% R + 60% G + 10% B)
-* Position du sujet (règle des tiers)
+**But du programme**
 
+Faire la comparaison entre deux images et dire si elles se ressembles
 
 **Critères de ressemblance :**
 
@@ -16,6 +14,21 @@ Comparer deux images :
 * Comparaison des images sous le filtre de sobel                20%
 * Comparaison des histogrammes L                                20%
 * Différence entre les deux images puis voir si noir partout    20%
+
+**Déroulement du programme**
+
+* Test du nombre d'images passé en arguments
+* Création des histogrammes des images concernées
+* Comparaison de la différence des images
+(D'autre à venir)
+
+
+
+Comparer deux images :
+* Colorimétrie (Histogramme)
+* Luminosité (30% R + 60% G + 10% B)
+* Position du sujet (règle des tiers)
+
 
 # How To
 

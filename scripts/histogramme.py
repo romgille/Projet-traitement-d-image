@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import sys
 from variables import histosPath
 from fonctions import buildHistogram

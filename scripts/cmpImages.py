@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import sys
 from fonctions import compDifImagesGris
 from fonctions import compDifImages
