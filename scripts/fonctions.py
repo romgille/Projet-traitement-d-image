@@ -613,6 +613,7 @@ def normHisto(histo):
     r = []
     s = 0.0
     for h in histo:
+        #print h
         s += h
     for h in histo:
         r.append(h/s)
@@ -628,6 +629,25 @@ def comparaisonHistoBhattacharyya(histoA, histoB):
     newDistance = -log(distance)
     return newDistance
 
+def comparaisonHistoFactor(histoA, histoB, factor):
+    #print histoA
+    hA = normHisto(histoA)
+    hB = normHisto(histoB)
+    distance = 0.
+    for i in range(0, 255):
+        distance += ((abs(hA[i]- hB[i]))**factor)/len(hA)
+    return distance
+
+def comparaisonHisto3channels2(histoA, histoB, factor):
+        results = []
+        finale = 0
+        for c in range(3):
+            results.append(comparaisonHistoFactor(histoA[c],
+                                histoB[c],factor))
+        for i in range(0, 3):
+            finale += results[i]
+
+        print round((finale *100), 2), "%"
 
 def comparaisonHisto3channels(histoA, histoB, factor):
         resultsBatta = []
@@ -646,3 +666,9 @@ def comparaisonImage3channels(im1, im2, facteur):
     histo1 = buildHistogram(newIm1)
     histo2 = buildHistogram(newIm2)
     return comparaisonHisto3channels(histo1, histo2, facteur)
+
+def comparaisonImage3channels2(im1, im2, facteur):
+    newIm1, newIm2 = normalize([im1, im2])
+    histo1 = buildHistogram(newIm1)
+    histo2 = buildHistogram(newIm2)
+    return comparaisonHisto3channels2(histo1, histo2, facteur)
