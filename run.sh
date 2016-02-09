@@ -23,10 +23,11 @@ else
 
 fi
 
-# --- HISTOGRAMMES ---
-# Supprimer tous les histogrammes créés précedemment
-echo "Suppression des histogrammes précédents :"
-rm histogrammes/* -rv
+## --- HISTOGRAMMES ---
+## Supprimer tous les histogrammes créés précedemment
+#echo "Suppression des histogrammes et sobels précédents :"
+#rm histogrammes/* -rv
+#rm sobel/* -rv
 
 for args in $@
 do
@@ -51,6 +52,9 @@ python scripts/cmpImages.py $1 $2
 
 # --- COMPARAISON SOBEL ---
 # Compare le nombre de pixels différents dans les images en sobel
+echo ""
+echo "Sobel de $1 créé dans sobel/"
+echo "Sobel de $2 créé dans sobel/"
 echo ""
 echo "Différence pixel à pixel en sobel :"
 python scripts/cmpSobel.py $1 $2

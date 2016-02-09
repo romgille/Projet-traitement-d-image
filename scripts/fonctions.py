@@ -556,7 +556,7 @@ def compDifImages(im):
             else:
                 comp = comp + 1
     prcentge = (comp/taille)*100
-    prcentge = round(prcentge, 3)
+    prcentge = round(prcentge, 2)
     print prcentge, "%", "de difference"
     return prcentge
 
@@ -579,7 +579,7 @@ def compDifImagesGris(im):
     #print comp
     #print taille
     prcentge = (comp/taille)*100
-    prcentge = round(prcentge, 3)
+    prcentge = round(prcentge, 2)
     print prcentge, "%", "de difference"
     return prcentge
 
@@ -638,7 +638,7 @@ def comparaisonHisto3channels(histoA, histoB, factor):
         for i in range(0, 3):
             moyenneBatta += resultsBatta[i]
         moyenneBatta /= 3
-        print round((moyenneBatta * 100), 3), "%"
+        print round((moyenneBatta * 100), 2), "%"
 
 
 def comparaisonImage3channels(im1, im2, facteur):
