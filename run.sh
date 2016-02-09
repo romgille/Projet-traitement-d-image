@@ -40,11 +40,13 @@ do
 done
 
   # Comparer les histogrammes
-  echo ""
+  echo "Distance de Bhattacharyya :"
   python scripts/compHistos.py $1 $2
 
 # --- COMPARAISON COULEUR PIXELS ---
 # Compare le nombre de pixels différents dans les images
+echo ""
+echo "Différence pixel à pixel :"
 python scripts/cmpImages.py $1 $2
 
 exit 0

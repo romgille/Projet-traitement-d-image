@@ -422,7 +422,7 @@ def diff(a, b):
     pixA = newA.load()
     pixB = newB.load()
     type(pixA)
-    newImage = Image.new("RGB", a.size)
+    newImage = Image.new("RGB", newA.size)
     pix = newImage.load()
     for i in range(0, newImage.size[0]):
         for j in range(0, newImage.size[1]):
@@ -633,10 +633,14 @@ def comparaisonHistoBhattacharyya(histoA, histoB):
 
 def comparaisonHisto3channels(histoA, histoB, factor):
         resultsBatta = []
+        moyenneBatta = 0
         for c in range(3):
             resultsBatta.append(comparaisonHistoBhattacharyya(histoA[c],
                                 histoB[c]))
-        print(tuple(resultsBatta))
+        for i in range(0, 3):
+            moyenneBatta += resultsBatta[i]
+        moyenneBatta /= 3
+        print round((moyenneBatta * 100), 3), "%"
 
 
 def comparaisonImage3channels(im1, im2, facteur):
