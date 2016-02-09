@@ -49,4 +49,10 @@ echo ""
 echo "Différence pixel à pixel :"
 python scripts/cmpImages.py $1 $2
 
+# --- COMPARAISON SOBEL ---
+# Compare le nombre de pixels différents dans les images en sobel
+echo ""
+echo "Différence pixel à pixel en sobel :"
+python scripts/cmpSobel.py $1 $2
+
 exit 0

@@ -348,16 +348,14 @@ def minFilter(im, radius):
     return result
 
 
-def sobel(im,):
+def sobel(im):
     pix = im.load()
     result = Image.new("L", im.size)
     rpix = result.load()
     for i in range(1, im.size[0] - 1):
         for j in range(1, im.size[1] - 1):
-            gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1]
-            + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
-            gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1]
-            + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
+            gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1] + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
+            gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1] + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
             g = int(cmath.sqrt((gX*gX)+(gY*gY)).real)
             rpix[i, j] = g
     return result
