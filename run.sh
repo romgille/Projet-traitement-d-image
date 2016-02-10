@@ -9,8 +9,8 @@ then
   then
     if test -f $2
     then
-      echo ""
-      echo "\\newpage"
+      #echo ""
+      #echo "\\newpage"
       echo ""
       echo "#Comparaison de $1 et $2"
       echo ""
