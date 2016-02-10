@@ -9,6 +9,9 @@
 
 [ESIEE rue seul](http://farm7.static.flickr.com/6030/6010023102_334387d013_b.jpg)
 
+## Original :
+[Original](http://farm9.static.flickr.com/8329/8086409595_92b9bb908a_b.jpg)
+
 # Liens Histogramme
 [Histogramme(imagerie numérique)](https://fr.wikipedia.org/wiki/Histogramme_%28imagerie_num%C3%A9rique%29)
 
