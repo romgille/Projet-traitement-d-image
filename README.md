@@ -37,14 +37,15 @@ Clone the repository :
 
 `git clone https://github.com/romgille/Projet-traitement-d-image.git`
 
+Change the picture you want to compare in 'photos' folder, the 'original.jpg'
+must be the source picture you want to compare the others with.
+
 Run the script :
 
-`./run.sh path/to/file/picture-to-compare1.jpg path/to/file/picture-to-compare2.jpg`
+`./main.sh`
 
-You can try with the picture on `photos/` folder
+if it does not work, change the mod of the file :
 
-if it does not work :
-
-`chmod +x run.sh`
+`chmod +x main.sh`
 
 and try to run the script again.

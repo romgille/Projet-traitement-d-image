@@ -1,11 +1,16 @@
 #!/bin/bash
 
+set -euo pipefail
+IFS=$'\n\t'
+
 if test $# == 2
 then
   if test -f $1
   then
     if test -f $2
     then
+      echo ""
+      echo "\\newpage"
       echo ""
       echo "#Comparaison de $1 et $2"
       echo ""
