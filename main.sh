@@ -3,6 +3,8 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+rm -v rapport.md
+
 for i in photos/*
 do
   echo "Comparaison de la photo originale avec $i"
