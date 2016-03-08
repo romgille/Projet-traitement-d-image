@@ -53,17 +53,20 @@ def inverseValues(im):
 
 def buildHistogram(im):
     pix = im.load()
-    R = [0]*256
-    G = [0]*256
-    B = [0]*256
-    for i in range(0, im.size[0]):
-        for j in range(0, im.size[1]):
-            val = pix[i, j]
-            R[val[0]] += 1
-            G[val[1]] += 1
-            B[val[2]] += 1
-    histo = (R, G, B)
-    return histo
+    if (im.mode == "RGB"):
+        R = [0]*256
+        G = [0]*256
+        B = [0]*256
+        for i in range(0, im.size[0]):
+            for j in range(0, im.size[1]):
+                val = pix[i, j]
+                R[val[0]] += 1
+                G[val[1]] += 1
+                B[val[2]] += 1
+        histo = (R, G, B)
+        return histo
+    else:
+        print "Votre image n'est pas en RGB"
 
 
 def maxValeur(histo):
@@ -210,14 +213,17 @@ def zoomAndCrop(im, factor):
 
 
 def toGray(im):
-    gray = Image.new("L", im.size)
-    pix = im.load()
-    gpix = gray.load()
-    for i in range(0, im.size[0]):
-        for j in range(0, im.size[1]):
-            val = pix[i, j]
-            gpix[i, j] = (val[0]+val[1]+val[2])/3
-    return gray
+    if(im.mode == "RGB"):
+        gray = Image.new("L", im.size)
+        pix = im.load()
+        gpix = gray.load()
+        for i in range(0, im.size[0]):
+            for j in range(0, im.size[1]):
+                val = pix[i, j]
+                gpix[i, j] = (val[0]+val[1]+val[2])/3
+        return gray
+    else:
+        return im
 
 
 def blur(im, radius):
@@ -557,7 +563,6 @@ def compDifImages(im):
                 comp = comp + 1
     prcentge = (comp/taille)*100
     prcentge = round(prcentge, 2)
-    print prcentge, "%", "de difference"
     return prcentge
 
 
@@ -580,7 +585,6 @@ def compDifImagesGris(im):
     #print taille
     prcentge = (comp/taille)*100
     prcentge = round(prcentge, 2)
-    print prcentge, "%", "de difference"
     return prcentge
 
 
@@ -629,25 +633,26 @@ def comparaisonHistoBhattacharyya(histoA, histoB):
     newDistance = -log(distance)
     return newDistance
 
+
 def comparaisonHistoFactor(histoA, histoB, factor):
     #print histoA
     hA = normHisto(histoA)
     hB = normHisto(histoB)
     distance = 0.
     for i in range(0, 255):
-        distance += ((abs(hA[i]- hB[i]))**factor)/len(hA)
+        distance += ((abs(hA[i] - hB[i]))**factor)/len(hA)
     return distance
 
+
 def comparaisonHisto3channels2(histoA, histoB, factor):
-        results = []
+        result = []
         finale = 0
         for c in range(3):
-            results.append(comparaisonHistoFactor(histoA[c],
-                                histoB[c],factor))
+            result.append(comparaisonHistoFactor(histoA[c], histoB[c], factor))
         for i in range(0, 3):
-            finale += results[i]
+            finale += result[i]
+        print round((finale * 100), 2)
 
-        print round((finale *100), 2), "%"
 
 def comparaisonHisto3channels(histoA, histoB, factor):
         resultsBatta = []
@@ -658,7 +663,7 @@ def comparaisonHisto3channels(histoA, histoB, factor):
         for i in range(0, 3):
             moyenneBatta += resultsBatta[i]
         moyenneBatta /= 3
-        print round((moyenneBatta * 100), 2), "%"
+        return round((moyenneBatta * 100), 2)
 
 
 def comparaisonImage3channels(im1, im2, facteur):
@@ -666,6 +671,7 @@ def comparaisonImage3channels(im1, im2, facteur):
     histo1 = buildHistogram(newIm1)
     histo2 = buildHistogram(newIm2)
     return comparaisonHisto3channels(histo1, histo2, facteur)
+
 
 def comparaisonImage3channels2(im1, im2, facteur):
     newIm1, newIm2 = normalize([im1, im2])

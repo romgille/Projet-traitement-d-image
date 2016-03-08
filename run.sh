@@ -42,20 +42,19 @@ do
 
 done
 
-  # Comparer les histogrammes
-  echo "##Distance de Bhattacharyya :"
-  python scripts/compHistos.py $1 $2
+# Comparer les histogrammes
+echo "## Distance de Bhattacharyya (en %):"
+python scripts/compHistos.py $1 $2
 
 # --- COMPARAISON COULEUR PIXELS ---
 # Compare le nombre de pixels différents dans les images
 echo ""
-echo "##Différence pixel à pixel :"
+echo "## Différence pixel à pixel (en %):"
 python scripts/cmpImages.py $1 $2
+
 
 # --- COMPARAISON SOBEL ---
 # Compare le nombre de pixels différents dans les images en sobel
 echo ""
-echo "##Différence pixel à pixel en sobel :"
+echo "## Différence pixel à pixel en sobel (en %):"
 python scripts/cmpSobel.py $1 $2
-
-exit 0

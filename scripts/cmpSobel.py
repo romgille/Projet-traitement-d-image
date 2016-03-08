@@ -15,4 +15,4 @@ for i in range(0, 2):
     ims[i].save(str(sobelPath) + pathSobelFile)
 
 if ims[0].mode == "L":
-    compDifImagesGris(diffGris(ims[0], ims[1]))
+    print compDifImagesGris(diffGris(ims[0], ims[1]))
