@@ -11,10 +11,13 @@ do
   ./run.sh photos/original.jpg $i >> rapport.md
 done
 
-#echo "Création du rapport en pdf"
-#pandoc rapport.md -V geometry:margin=1in -o rapport.pdf
-
-#echo "Suppression du markdown de rapport"
-#rm rapport.md
+if which pandoc == "pandoc not found"
+then
+  echo "Vous n'avez pas pandoc, vous pouvez regarder le résultat dans le fichier rapport.md"
+else
+  echo "Vous avez pandoc ! On va convertir rapport.md en PDF"
+  echo "Création du rapport en PDF"
+  pandoc rapport.md -V geometry:margin=1in -o rapport.pdf
+fi
 
 exit 0
