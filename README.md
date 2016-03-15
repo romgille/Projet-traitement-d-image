@@ -5,15 +5,13 @@ Contributeurs : Romain Gille (romgille), Yannick Ezvan (nonock).
 
 ##But du programme
 
-Faire la comparaison entre deux images et dire si elles se ressembles
+Faire la comparaison entre deux images et dire ce qui se ressemble et ce qui diffère.
 
 ##Critères de ressemblance :
 
-* Comparaison des histogrammes RGB                              20%
-* Comparaison des histogrammes de luminosités                   20%
-* Comparaison des images sous le filtre de sobel                20%
-* Comparaison des histogrammes L                                20%
-* Différence entre les deux images puis voir si noir partout    20%
+* Comparaison des histogrammes RGB
+* Comparaison des images sous le filtre de sobel
+* Différence entre les deux images pixel par pixel
 
 ##Déroulement du programme
 
@@ -26,9 +24,9 @@ Faire la comparaison entre deux images et dire si elles se ressembles
 
 **Comparer deux images :**
 
-* Colorimétrie (Histogramme)
-* Luminosité (30% R + 60% G + 10% B)
-* Position du sujet (règle des tiers)
+* Colorimétrie (Histogramme) coefficient de Bhattacharyya
+* Position des formes avec filtre de sobel
+* Différence pixel par pixel
 
 
 # How To
