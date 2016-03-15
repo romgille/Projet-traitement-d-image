@@ -1,5 +1,4 @@
 histogrammes/
-photos/
 sobel/
 rapport.pdf
-**/**.pyc
+scripts/*.pyc

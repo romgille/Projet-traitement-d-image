@@ -24,7 +24,7 @@ Faire la comparaison entre deux images et dire ce qui se ressemble et ce qui dif
 
 **Comparer deux images :**
 
-* Colorimétrie (Histogramme) coefficient de Bhattacharyya
+* Colorimétrie (Histogramme) distance de Bhattacharyya
 * Position des formes avec filtre de sobel
 * Différence pixel par pixel
 
