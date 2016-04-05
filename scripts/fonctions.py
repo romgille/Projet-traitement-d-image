@@ -14,17 +14,22 @@ def comparaisonHisto3channels(histoA, histoB, factor):
         moyenneBatta /= 3
         return round((moyenneBatta * 100), 2)
 
+def comparaisonHisto(histoA, histoB, factor):
+        resultsBatta = 0
+        resultsBatta = comparaisonHistoBhattacharyyaHSV(histoA,histoB)
+        return round((resultsBatta * 100), 2)
+
 def comparaisonImage3channels(im1, im2, facteur):
     newIm1, newIm2 = normalize([im1, im2])
     histo1 = buildHistogram(newIm1)
     histo2 = buildHistogram(newIm2)
     return comparaisonHisto3channels(histo1, histo2, facteur)
 
-def comparaisonImage3channels2(im1, im2, facteur):
-    newIm1, newIm2 = normalize([im1, im2])
-    histo1 = buildHistogram(newIm1)
-    histo2 = buildHistogram(newIm2)
-    return comparaisonHisto3channels2(histo1, histo2, facteur)
+# def comparaisonImage3channels2(im1, im2, facteur):
+#     newIm1, newIm2 = normalize([im1, im2])
+#     histo1 = buildHistogram(newIm1)
+#     histo2 = buildHistogram(newIm2)
+#     return comparaisonHisto3channels2(histo1, histo2, facteur)
 
 def buildHistogram(im):
     pix = im.load()
@@ -40,8 +45,20 @@ def buildHistogram(im):
                 B[val[2]] += 1
         histo = (R, G, B)
         return histo
+    elif im.mode == "HSV":
+        H = [0]*360
+        S = [0]*100
+        V = [0]*100
+        for i in range(0, im.size[0]):
+            for j in range(0, im.size[1]):
+                val = pix[i, j]
+                H[val[0]] += 1
+                S[val[1]] += 1
+                V[val[2]] += 1
+        histo = (H, S, V)
+        return histo
     else:
-        print "Votre image n'est pas en RGB"
+        print "Votre image n'est pas en RGB ou en HSV"
 
 def maxValeur(histo):
     maxV = 0
@@ -154,6 +171,15 @@ def normHisto(histo):
     return r
 
 def comparaisonHistoBhattacharyya(histoA, histoB):
+    hA = normHisto(histoA)
+    hB = normHisto(histoB)
+    distance = 0.
+    for i in range(0, 255):
+        distance += (hA[i] * hB[i]) ** 0.5
+    newDistance = -log(distance)
+    return newDistance
+
+def comparaisonHistoBhattacharyyaHSV(histoA, histoB):
     hA = normHisto(histoA)
     hB = normHisto(histoB)
     distance = 0.
