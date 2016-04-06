@@ -5,6 +5,8 @@
 \usepackage{ifxetex,ifluatex}
 \usepackage{bchart}
 \usepackage{datatool}
+\usepackage[gray]{databar}
+\usepackage{color}
 \usepackage{pgfplotstable}
 \usepackage{array,booktabs}
 \usepackage{filecontents}
@@ -79,6 +81,10 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
+
+
+% Récupération des valeurs
+\DTLloaddb{valeurs}{valeurs.csv}
 
 \newpage
 
@@ -404,62 +410,7 @@ bordures que ce filtre doit atténuer.
 \section{Synthèse des comparaisons}\label{synthese-des-comparaisons}
 
 \begin{center}
-\begin{tabular}{|c|c|c||c|}
-  \hline
-  Images & Distance de Bhattacharyya & Différences de formes
-    & Moyenne de différence \\
-  \hline
-  Contraste & 35 \% & 28 \% & 31.5 \% \\
-  \hline
-  Crop & 0.27 \% & 51.16 \% & 25.5 \% \\
-  \hline
-  Couleurs inversées & 49.49 \% & 0 \% & 24 \% \\
-  \hline
-  Lumineuse & 51.53 \% & 12.43 \% & 32 \% \\
-  \hline
-  Effet poster & 16.35 \% & 16.79 \% & 16.5 \% \\
-  \hline
-  Rotation légère & 0.64 \% & 53.58 \% & 27 \% \\
-  \hline
-  Rotation $90^{\circ}$ & 0.04 \% & 58.03 \% & 29 \% \\
-  \hline
-  Saturation & 0.94 \% & 0.51 \% & 0.70 \% \\
-  \hline
-  Sombre & 6.44 \% & 12.6 \% & 9.5 \% \\
-  \hline
-  Terne & 71.67 \% & 27.33 \% & 49.5 \% \\
-  \hline
-\end{tabular}
+\DTLdisplaydb{valeurs}
 \end{center}
 
-\begin{figure}[htbp]
-\centering
-\includegraphics{diagramme.png}
-\caption{}
-\end{figure}
-
-\newpage
-\begin{center}
-\begin{bchart}[step=10,max=50,width=7in]
-        \bcbar[text = Image contraste]{31.5}
-            \smallskip
-        \bcbar[text = Image crop]{25.5}
-            \smallskip
-        \bcbar[text = Image couleur inversée]{24}
-            \smallskip
-        \bcbar[text = Image plus lumineuse]{32}
-            \smallskip
-        \bcbar[text = Image effet poster]{16.5}
-            \smallskip
-        \bcbar[text = Image rotation légère]{27}
-            \smallskip
-        \bcbar[text = Image rotation $90^{\circ}$]{29}
-            \smallskip
-        \bcbar[text = Image saturation]{0.70}
-            \smallskip
-        \bcbar[text = Image sombre]{9.5}
-            \smallskip
-        \bcbar[text = Image terne]{49.5}
-    \end{bchart}
-\end{center}
 \end{document}

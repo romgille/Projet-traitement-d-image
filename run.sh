@@ -36,25 +36,32 @@ fi
 
 for args in $@
 do
-  
+
   # Créer les histogrammes des images concernés
   python scripts/histogramme.py $args
 
 done
 
-# Comparer les histogrammes
-echo "## Distance de Bhattacharyya (en %):"
-python scripts/compHistos.py $1 $2
+echo -n $2 >> valeurs.csv
+echo -n "," >> valeurs.csv
+python3 scripts/compHistos.py $1 $2 >> valeurs.csv
+echo -n "," >> valeurs.csv
+python3 scripts/cmpImages.py $1 $2 >> valeurs.csv
+echo >> valeurs.csv
 
-# --- COMPARAISON COULEUR PIXELS ---
-# Compare le nombre de pixels différents dans les images
-echo ""
-echo "## Différence pixel à pixel (en %):"
-python scripts/cmpImages.py $1 $2
-
-
-# --- COMPARAISON SOBEL ---
-# Compare le nombre de pixels différents dans les images en sobel
-echo ""
-echo "## Différence pixel à pixel en sobel (en %):"
-python scripts/cmpSobel.py $1 $2
+# # Comparer les histogrammes
+# echo "## Distance de Bhattacharyya (en %):"
+# python scripts/compHistos.py $1 $2
+#
+# # --- COMPARAISON COULEUR PIXELS ---
+# # Compare le nombre de pixels différents dans les images
+# echo ""
+# echo "## Différence pixel à pixel (en %):"
+# python scripts/cmpImages.py $1 $2
+#
+#
+# # --- COMPARAISON SOBEL ---
+# # Compare le nombre de pixels différents dans les images en sobel
+# echo ""
+# echo "## Différence pixel à pixel en sobel (en %):"
+# python scripts/cmpSobel.py $1 $2
