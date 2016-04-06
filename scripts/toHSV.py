@@ -9,7 +9,6 @@ ims = [Image.open(f) for f in sys.argv[1:]]
 for i in range(0, len(ims)-1):
     if ims[i].mode == ims[i+1].mode:
         toHSV(ims[i])
-        #Sauvegarder l'image creer dans un dossier HSV
 histo1 = buildHistogram(ims[0])
 histo2 = buildHistogram(ims[1])
 cmpHistoH = comparaisonHisto(histo1[0], histo2[0], 2)
