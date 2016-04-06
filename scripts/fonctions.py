@@ -14,17 +14,25 @@ def comparaisonHisto3channels(histoA, histoB, factor):
         moyenneBatta /= 3
         return round((moyenneBatta * 100), 2)
 
+
+def comparaisonHisto(histoA, histoB, factor):
+        resultsBatta = 0
+        resultsBatta = comparaisonHistoBhattacharyyaHSV(histoA, histoB)
+        return round((resultsBatta * 100), 2)
+
+
 def comparaisonImage3channels(im1, im2, facteur):
     newIm1, newIm2 = normalize([im1, im2])
     histo1 = buildHistogram(newIm1)
     histo2 = buildHistogram(newIm2)
     return comparaisonHisto3channels(histo1, histo2, facteur)
 
-def comparaisonImage3channels2(im1, im2, facteur):
-    newIm1, newIm2 = normalize([im1, im2])
-    histo1 = buildHistogram(newIm1)
-    histo2 = buildHistogram(newIm2)
-    return comparaisonHisto3channels2(histo1, histo2, facteur)
+# def comparaisonImage3channels2(im1, im2, facteur):
+#     newIm1, newIm2 = normalize([im1, im2])
+#     histo1 = buildHistogram(newIm1)
+#     histo2 = buildHistogram(newIm2)
+#     return comparaisonHisto3channels2(histo1, histo2, facteur)
+
 
 def buildHistogram(im):
     pix = im.load()
@@ -40,8 +48,21 @@ def buildHistogram(im):
                 B[val[2]] += 1
         histo = (R, G, B)
         return histo
+    elif im.mode == "HSV":
+        H = [0]*360
+        S = [0]*100
+        V = [0]*100
+        for i in range(0, im.size[0]):
+            for j in range(0, im.size[1]):
+                val = pix[i, j]
+                H[val[0]] += 1
+                S[val[1]] += 1
+                V[val[2]] += 1
+        histo = (H, S, V)
+        return histo
     else:
-        print("Votre image n'est pas en RGB")
+        print("Votre image n'est pas en RGB ou en HSV")
+
 
 def maxValeur(histo):
     maxV = 0
@@ -51,26 +72,22 @@ def maxValeur(histo):
                 maxV = histo[j][i]
     return maxV
 
+
 def drawBin(im, startx, endx, value, maxV, channel):
     pix = im.load()
-    #calculer la hauteur H de la barre en fonction de value, max et im.size[1]
     hauteur = (value * im.size[1]) / maxV
-    # pour tous les pixels dans la zone delimitee par startx et endx en largeur
-        #et 0 et H en hauteur
-            #mettre le canal "channel" de ce pixel a 255
     for i in range(startx, endx):
         for j in range(511, 513-hauteur, -1):
                 val = list(pix[i, j])
                 val[channel] = 255
                 pix[i, j] = tuple(val)
 
+
 def drawHistogram(histo):
-    #creer image histogramme de 512x512 en RGB
     newIm = Image.new("RGB", (512, 512))
     val = 0
     val1 = 0
     val2 = 0
-    #faire l'appel a drawBin qui va bien
     for j in range(0, 256):
         drawBin(newIm, val, val+1, histo[0][j], maxValeur(histo), 0)
         val += 2
@@ -81,6 +98,7 @@ def drawHistogram(histo):
         drawBin(newIm, val2, val2+1, histo[2][j], maxValeur(histo), 2)
         val2 += 2
     return newIm
+
 
 def toGray(im):
     if(im.mode == "RGB"):
@@ -95,17 +113,23 @@ def toGray(im):
     else:
         return im
 
+
 def sobel(im):
     pix = im.load()
     result = Image.new("L", im.size)
     rpix = result.load()
     for i in range(1, im.size[0] - 1):
         for j in range(1, im.size[1] - 1):
-            gX = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1] + pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
-            gY = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1] + pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
+            a = -pix[i - 1, j - 1] - 2*pix[i - 1, j] - pix[i - 1, j + 1]
+            b = pix[i + 1, j - 1] + 2*pix[i + 1, j] + pix[i + 1, j + 1]
+            c = -pix[i - 1, j - 1] - 2*pix[i, j - 1] - pix[i + 1, j - 1]
+            d = pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
+            gX = a + b
+            gY = c + d
             g = int(cmath.sqrt((gX*gX)+(gY*gY)).real)
             rpix[i, j] = g
     return result
+
 
 def normalize(images):
     w = []
@@ -127,6 +151,7 @@ def normalize(images):
         newImagesT = tuple(newImages)
         return newImagesT
 
+
 def diff(a, b):
     newA, newB = normalize([a, b])
     pixA = newA.load()
@@ -143,15 +168,16 @@ def diff(a, b):
                          abs(valA[2] - valB[2]))
     return newImage
 
+
 def normHisto(histo):
     r = []
     s = 0.0
     for h in histo:
-        #print h
         s += h
     for h in histo:
         r.append(h/s)
     return r
+
 
 def comparaisonHistoBhattacharyya(histoA, histoB):
     hA = normHisto(histoA)
@@ -162,6 +188,17 @@ def comparaisonHistoBhattacharyya(histoA, histoB):
     newDistance = -log(distance)
     return newDistance
 
+
+def comparaisonHistoBhattacharyyaHSV(histoA, histoB):
+    hA = normHisto(histoA)
+    hB = normHisto(histoB)
+    distance = 0.
+    for i in range(0, 255):
+        distance += (hA[i] * hB[i]) ** 0.5
+    newDistance = -log(distance)
+    return newDistance
+
+
 def compDifImages(im):
     pix = im.load()
     comp = 0.
@@ -183,6 +220,7 @@ def compDifImages(im):
     prcentge = round(prcentge, 2)
     return prcentge
 
+
 def compDifImagesGris(im):
     pix = im.load()
     comp = 0.
@@ -191,18 +229,15 @@ def compDifImagesGris(im):
     for x in range(0, im.size[0]):
         s = 0
         for y in range(0, im.size[1]):
-            #val.append(pix[x, y])
             s = pix[x, y]
-            #print s
             if 0 <= s <= 15:
                 comp = comp + 0
             else:
                 comp = comp + 1
-    #print comp
-    #print taille
     prcentge = (comp/taille)*100
     prcentge = round(prcentge, 2)
     return prcentge
+
 
 def diffGris(A, B):
     a, b = normalize([A, B])
@@ -217,6 +252,7 @@ def diffGris(A, B):
             val = abs(val1 - val2)
             pix1[i, j] = val
     return newIm
+
 
 def crop(im, x, y, w, h):
     pix = im.load()
@@ -227,61 +263,6 @@ def crop(im, x, y, w, h):
             pix1[i-x, j-y] = pix[i, j]
     return newIm
 
-def compDifImages(im):
-    pix = im.load()
-    comp = 0.
-    taille = im.size[0]*im.size[1]
-    prcentge = 0
-    for x in range(0, im.size[0]):
-        valR = []
-        valG = []
-        valB = []
-        for y in range(0, im.size[1]):
-            valR = pix[x, y][0]
-            valG = pix[x, y][1]
-            valB = pix[x, y][2]
-            if 0 <= valR <= 32 and 0 <= valG <= 32 and 0 <= valB <= 32:
-                comp = comp + 0
-            else:
-                comp = comp + 1
-    prcentge = (comp/taille)*100
-    prcentge = round(prcentge, 2)
-    return prcentge
-
-def compDifImagesGris(im):
-    pix = im.load()
-    comp = 0.
-    taille = im.size[0]*im.size[1]
-    prcentge = 0
-    for x in range(0, im.size[0]):
-        s = 0
-        for y in range(0, im.size[1]):
-            #val.append(pix[x, y])
-            s = pix[x, y]
-            #print s
-            if 0 <= s <= 15:
-                comp = comp + 0
-            else:
-                comp = comp + 1
-    #print comp
-    #print taille
-    prcentge = (comp/taille)*100
-    prcentge = round(prcentge, 2)
-    return prcentge
-
-def diffGris(A, B):
-    a, b = normalize([A, B])
-    pixa = a.load()
-    pixb = b.load()
-    newIm = Image.new("L", a.size)
-    pix1 = newIm.load()
-    for i in range(0, newIm.size[0]):
-        for j in range(0, newIm.size[1]):
-            val1 = pixa[i, j]
-            val2 = pixb[i, j]
-            val = abs(val1 - val2)
-            pix1[i, j] = val
-    return newIm
 
 def cropGris(im, x, y, w, h):
     pix = im.load()
@@ -413,7 +394,7 @@ def cropGris(im, x, y, w, h):
 # def zoomAndCrop(im, factor):
 #     newIm = zoom(im, factor)
 #     newIm2 = crop(newIm, (newIm.size[0]-im.size[0])/2,
-#                          (newIm.size[1]-im.size[1])/2, im.size[0], im.size[1])
+#                         (newIm.size[1]-im.size[1])/2, im.size[0], im.size[1])
 #     return newIm2
 
 # def blur(im, radius):
@@ -683,7 +664,7 @@ def cropGris(im, x, y, w, h):
 #         result = []
 #         finale = 0
 #         for c in range(3):
-#             result.append(comparaisonHistoFactor(histoA[c], histoB[c], factor))
+#           result.append(comparaisonHistoFactor(histoA[c], histoB[c], factor))
 #         for i in range(0, 3):
 #             finale += result[i]
 #         print round((finale * 100), 2)
