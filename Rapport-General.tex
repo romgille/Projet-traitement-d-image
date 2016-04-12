@@ -3,9 +3,8 @@
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{bchart}
 \usepackage{datatool}
-\usepackage[gray]{databar}
+\usepackage{databar}
 \usepackage{color}
 \usepackage{pgfplotstable}
 \usepackage{array,booktabs}
@@ -84,7 +83,10 @@
 
 
 % Récupération des valeurs
-\DTLloaddb{valeurs}{valeurs.csv}
+
+\DTLloaddb[keys={Fichier,Bhattacharyya,Formes,Hue,Saturation,Value},%
+]{valeurs}{valeurs.csv}
+\DTLsetseparator{,}
 
 \newpage
 
@@ -120,15 +122,17 @@ Pour les comparaisons, nous utilisons deux procédés :
 \caption{Photo contraste}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  35 \% & 28 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/contraste.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 La comparaison de la photo originale avec la photo en
 contraste élevée nous donne comme résultat que les deux photos se
@@ -150,15 +154,17 @@ crop}\label{comparaison-avec-la-photo-avec-un-crop}
 \caption{Photo crop}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  0.27 \% & 51.16 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/crop.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 
 \emph{Le crop est un procédé qui consiste à recadrer une photo}
@@ -184,16 +190,17 @@ inversées}\label{comparaison-avec-la-photo-aux-couleurs-inversuxe9es}
 \caption{Photo couleurs inversées}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  49.49 \% & 0 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/inverse.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
-
+\end{table}
 
 Les résultats de la comparaison de la photo originale avec la photo
 inversée nous montre une différence de formes nulle via la comparaison
@@ -213,15 +220,17 @@ lumineuse}\label{comparaison-avec-la-photo-plus-lumineuse}
 \caption{Photo plus lumineuse}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  51.53 \% & 12.43 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/lumineux.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 
 On observe que la luminosité ajoutée à notre photo d'origine est
@@ -241,15 +250,17 @@ poster}\label{comparaison-avec-la-photo-avec-effet-poster}
 \caption{Photo poster}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  16.35 \% & 16.79 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/poster.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 
 La comparaison de cette text = Image nous donne une différence de $16.35 \%$
@@ -275,15 +286,17 @@ rotation}\label{comparaison-avec-la-photo-avec-une-luxe9guxe8re-rotation}
 \caption{Photo rotation légère}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  0.64 \% & 53.58 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/rotate.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 
 Pour cette comparaison, on observe une très faible différence de
@@ -305,15 +318,17 @@ $90^{\circ}$}\label{comparaison-avec-la-photo-dune-rotation-de-90circ}
 \caption{Photo rotation $90^{\circ}$}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  0.04 \% & 58.03 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/rotation.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 Contrairement à la photo précédente, cette rotation de $90^{\circ}$ ne
 découpe pas l'text = Image donc la différence de couleur est encore plus faible
@@ -330,15 +345,17 @@ découpe pas l'text = Image donc la différence de couleur est encore plus faibl
 \caption{Photo en saturation élevée}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  0.94 \% & 0.51 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/saturate.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 On observe avec la comparaison de cette photo saturée que selon nos
 critères, ces deux photos se ressemblent ($0.94 \%$ de différence pour la
@@ -359,15 +376,17 @@ assombrie}\label{comparaison-avec-la-photo-assombrie}
 \caption{Photo sombre}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  6.44 \% & 12.6 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/sombre.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 Comme pour la photo précédente, on peut considérer que les deux photos
 se ressemblent, cependant elles n'ont pas le même niveau de
@@ -388,15 +407,17 @@ terne}\label{comparaison-avec-la-photo-terne}
 \caption{Photo terne}
 \end{figure}
 
-\begin{center}
-\begin{tabular}{|c|c|}
-  \hline
-  Distance de Bhattacharyya & Différences de formes \\
-  \hline
-  71.67 \% & 27.33 \% \\
-  \hline
+\begin{table}[htbp]
+\centering
+\begin{tabular}{llr}
+\bfseries Formes &
+\bfseries Bhattacharyya (\%)%
+\DTLforeach*[\DTLiseq{\fichier}{photos/terne.jpg}]{valeurs}{%
+\fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
+\\
+\formes & \bhatta}
 \end{tabular}
-\end{center}
+\end{table}
 
 Cette modification a un gros impact sur la photo originale, surtout au
 niveau des couleurs. On observe en effet $71.67 \%$ de différence au
@@ -409,8 +430,9 @@ bordures que ce filtre doit atténuer.
 
 \section{Synthèse des comparaisons}\label{synthese-des-comparaisons}
 
-\begin{center}
+\begin{table}[htbp]
+\centering
 \DTLdisplaydb{valeurs}
-\end{center}
+\end{table}
 
 \end{document}

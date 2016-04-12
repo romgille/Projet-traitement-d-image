@@ -15,8 +15,8 @@ cmpHistoH = comparaisonHisto(histo1[0], histo2[0], 2)
 cmpHistoS = comparaisonHisto(histo1[1], histo2[1], 2)
 cmpHistoV = comparaisonHisto(histo1[2], histo2[2], 2)
 # print "H"
-print cmpHistoH
+print(cmpHistoH, end=",")
 # print "S"
-print cmpHistoS
+print(cmpHistoS, end=",")
 # print "V"
-print cmpHistoV
+print(cmpHistoV, end="")

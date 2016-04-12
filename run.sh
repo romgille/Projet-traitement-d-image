@@ -7,12 +7,14 @@ if test $# == 2
 then
   if test -f $1
   then
+    A=$1
     if test -f $2
+    B=$2
     then
       #echo ""
       #echo "\\newpage"
       echo ""
-      echo "#Comparaison de $1 et $2"
+      echo "#Comparaison de $A et $B"
       echo ""
     else
       echo "#Votre deuxième fichier à comparer n'existe pas"
@@ -46,7 +48,9 @@ echo -n $2 >> valeurs.csv
 echo -n "," >> valeurs.csv
 python3 scripts/compHistos.py $1 $2 >> valeurs.csv
 echo -n "," >> valeurs.csv
-python3 scripts/cmpImages.py $1 $2 >> valeurs.csv
+python3 scripts/cmpSobel.py $1 $2 >> valeurs.csv
+echo -n "," >> valeurs.csv
+python3 scripts/toHSV.py $1 $2 >> valeurs.csv
 echo >> valeurs.csv
 
 # # Comparer les histogrammes
