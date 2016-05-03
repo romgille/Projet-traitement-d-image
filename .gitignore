@@ -1,4 +1,6 @@
 histogrammes/
 sobel/
 rapport.pdf
-scripts/*.pyc
+scripts/**/*.pyc
+.*
+rapport/**/*.aux

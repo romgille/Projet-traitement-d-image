@@ -1,18 +1,17 @@
 from PIL import Image
 from math import sqrt
 from math import log
-
+from math import fabs
 
 def comparaisonHisto3channels(histoA, histoB, factor):
-        resultsBatta = []
-        moyenneBatta = 0
-        for c in range(3):
-            resultsBatta.append(comparaisonHistoBhattacharyya(histoA[c],
-                                histoB[c]))
-        for i in range(0, 3):
-            moyenneBatta += resultsBatta[i]
-        moyenneBatta /= 3.
-        return round((moyenneBatta * 100), 2)
+    resultsBatta = []
+    moyenneBatta = 0
+    for c in range(3):
+        resultsBatta.append(comparaisonHistoBhattacharyya(histoA[c], histoB[c]))
+    for i in range(0, 3):
+        moyenneBatta += resultsBatta[i]
+    moyenneBatta /= 3.
+    return round((moyenneBatta * 100), 2)
 
 
 def comparaisonHisto(histoA, histoB, factor):
@@ -101,14 +100,14 @@ def drawHistogram(histo):
 
 
 def toGray(im):
-    if(im.mode == "RGB"):
+    if im.mode == "RGB":
         gray = Image.new("L", im.size)
         pix = im.load()
         gpix = gray.load()
         for i in range(0, im.size[0]):
             for j in range(0, im.size[1]):
                 val = pix[i, j]
-                gpix[i, j] = (val[0]+val[1]+val[2])/3
+                gpix[i, j] = int((val[0]+val[1]+val[2])/3)
         return gray
     else:
         return im
@@ -249,7 +248,7 @@ def diffGris(A, B):
         for j in range(0, newIm.size[1]):
             val1 = pixa[i, j]
             val2 = pixb[i, j]
-            val = abs(val1 - val2)
+            val = abs(int(val1) - int(val2))
             pix1[i, j] = val
     return newIm
 
@@ -360,7 +359,7 @@ def cropGris(im, x, y, w, h):
 #     pix1 = newIm.load()
 #     for i in range(0, im.size[0]):
 #         for j in range(0, im.size[1]):
-#             x = abs(i - im.size[0]-1)
+#             x = fabs(i - im.size[0]-1)
 #             if x > im.size[0] - 1:
 #                 x = im.size[0] - 1
 #             pix1[x, j] = pix[i, j]
@@ -685,7 +684,7 @@ def cropGris(im, x, y, w, h):
 #     hB = normHisto(histoB)
 #     distance = 0.
 #     for i in range(0, 255):
-#         distance += ((abs(hA[i] - hB[i]))**factor)/len(hA)
+#         distance += ((fabs(hA[i] - hB[i]))**factor)/len(hA)
 #     return distance
 #
 #

@@ -3,12 +3,12 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-echo "Fichier,Bhattacharyya,Formes,Hue,Saturation,Value" > valeurs.csv
+echo "Fichier,Bhattacharyya,Formes,Hue,Saturation,Value" > csv/valeurs.csv
 
 for i in photos/*
 do
   echo "Comparaison de la photo originale avec $i"
-  ./run.sh photos/original.jpg $i >> rapport.md
+  scripts-shell/run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
 done
 
 
