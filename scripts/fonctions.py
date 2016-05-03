@@ -1,5 +1,5 @@
 from PIL import Image
-import cmath
+from math import sqrt
 from math import log
 
 
@@ -11,7 +11,7 @@ def comparaisonHisto3channels(histoA, histoB, factor):
                                 histoB[c]))
         for i in range(0, 3):
             moyenneBatta += resultsBatta[i]
-        moyenneBatta /= 3
+        moyenneBatta /= 3.
         return round((moyenneBatta * 100), 2)
 
 
@@ -126,7 +126,7 @@ def sobel(im):
             d = pix[i + 1, j + 1] + 2*pix[i, j + 1] + pix[i + 1, j + 1]
             gX = a + b
             gY = c + d
-            g = int(cmath.sqrt((gX*gX)+(gY*gY)).real)
+            g = int(sqrt((gX*gX)+(gY*gY)).real)
             rpix[i, j] = g
     return result
 
@@ -203,7 +203,7 @@ def compDifImages(im):
     pix = im.load()
     comp = 0.
     taille = im.size[0]*im.size[1]
-    prcentge = 0
+    prcentge = 0.
     for x in range(0, im.size[0]):
         valR = []
         valG = []
@@ -276,44 +276,51 @@ def cropGris(im, x, y, w, h):
 # def drawPixel(im, x, y, color):
 #     pix = im.load()
 #     pix[x, y] = color
-
+#
+#
 # def drawHLine(im, y, color):
 #     pix = im.load()
 #     for i in range(0, im.size[1], 1):
 #         pix[i, y] = color
-
+#
+#
 # def drawVLine(im, x, color):
 #     pix = im.load()
 #     for i in range(0, im.size[0], 1):
 #         pix[x, i] = color
-
+#
+#
 # def drawRectangle(im, x, y, w, h, color):
 #     pix = im.load()
 #     for i in range(x, x+w):
 #         for j in range(y, y+h):
 #             pix[i, j] = color
-
+#
+#
 # def increaseValues(im, dec):
 #     pix = im.load()
 #     for i in range(0, im.size[0]):
 #         for j in range(0, im.size[1]):
 #             val = pix[i, j]
 #             pix[i, j] = (val[0] + dec, val[1] + dec, val[2] + dec)
-
+#
+#
 # def reverseChannels(im):
 #     pix = im.load()
 #     for i in range(0, im.size[0]):
 #         for j in range(0, im.size[1]):
 #             val = pix[i, j]
 #             pix[i, j] = (val[2], val[1], val[0])
-
+#
+#
 # def inverseValues(im):
 #     pix = im.load()
 #     for i in range(0, im.size[0]):
 #         for j in range(0, im.size[1]):
 #             val = pix[i, j]
 #             pix[i, j] = (255-val[0], 255-val[1], 255-val[2])
-
+#
+#
 # def buildLookUpTable(start, stop):
 #     lut = []
 #     for i in range(0, 256):
@@ -322,9 +329,10 @@ def cropGris(im, x, y, w, h):
 #         lut.append((int(round(start[0]*startpi)) + int(round(stop[0]*Pi)),
 #                     int(round(start[1]*startpi)) + int(round(stop[1]*Pi)),
 #                     int(round(start[2]*startpi)) + int(round(stop[2]*Pi))))
-#     #print(lut)
+#     # print(lut)
 #     return lut
-
+#
+#
 # def applyLookUpTable(im, lut):
 #     newIm = Image.new("RGB", (im.size[0], im.size[1]))
 #     pix = im.load()
@@ -334,7 +342,8 @@ def cropGris(im, x, y, w, h):
 #             val = list(pix[i, j])
 #             pix1[i, j] = lut[val[0]]
 #     return newIm
-
+#
+#
 # def vFlip(im):
 #     pix = im.load()
 #     newIm = Image.new("RGB", (im.size[0], im.size[1]))
@@ -343,7 +352,8 @@ def cropGris(im, x, y, w, h):
 #         for j in range(0, im.size[1]):
 #             pix1[im.size[0]-1-i, im.size[1]-1-j] = pix[i, j]
 #     return newIm
-
+#
+#
 # def hFlip(im):
 #     pix = im.load()
 #     newIm = Image.new("RGB", (im.size[0], im.size[1]))
@@ -355,7 +365,8 @@ def cropGris(im, x, y, w, h):
 #                 x = im.size[0] - 1
 #             pix1[x, j] = pix[i, j]
 #     return newIm
-
+#
+#
 # def rotate(im):
 #     pix = im.load()
 #     newIm = Image.new("RGB", (im.size[1], im.size[0]))
@@ -365,7 +376,8 @@ def cropGris(im, x, y, w, h):
 #             val = pix[i, j]
 #             pix1[im.size[1]-1-j, im.size[0]-1-i] = val
 #     return newIm
-
+#
+#
 # def translate(im, dec):
 #     pix = im.load()
 #     newIm = Image.new("RGB", (im.size[0], im.size[1]))
@@ -381,7 +393,8 @@ def cropGris(im, x, y, w, h):
 #             if(decI < newIm.size[0] and decJ < newIm.size[1]):
 #                 pix1[decI, decJ] = pix[i, j]
 #     return newIm
-
+#
+#
 # def zoom(im, factor):
 #     pix = im.load()
 #     newIm = Image.new("RGB", (im.size[0] * factor, im.size[1] * factor))
@@ -390,13 +403,15 @@ def cropGris(im, x, y, w, h):
 #         for j in range(0, im.size[1]*factor):
 #             pix1[i, j] = pix[i/factor, j/factor]
 #     return newIm
-
+#
+#
 # def zoomAndCrop(im, factor):
 #     newIm = zoom(im, factor)
 #     newIm2 = crop(newIm, (newIm.size[0]-im.size[0])/2,
 #                         (newIm.size[1]-im.size[1])/2, im.size[0], im.size[1])
 #     return newIm2
-
+#
+#
 # def blur(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -416,7 +431,8 @@ def cropGris(im, x, y, w, h):
 #                     count += 1
 #             rpix[i, j] = somme/count
 #     return result
-
+#
+#
 # def dilate(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -435,7 +451,8 @@ def cropGris(im, x, y, w, h):
 #                         maxV = val
 #             rpix[i, j] = maxV
 #     return result
-
+#
+#
 # def erode(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -454,7 +471,8 @@ def cropGris(im, x, y, w, h):
 #                         minV = val
 #             rpix[i, j] = minV
 #     return result
-
+#
+#
 # def median(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -472,7 +490,8 @@ def cropGris(im, x, y, w, h):
 #                 val.sort()
 #             rpix[i, j] = val[len(val)//2]
 #     return result
-
+#
+#
 # def maxFilter(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -495,7 +514,8 @@ def cropGris(im, x, y, w, h):
 #             else:
 #                 rpix[i, j] = pix[i, j]
 #     return result
-
+#
+#
 # def minFilter(im, radius):
 #     pix = im.load()
 #     result = Image.new("L", im.size)
@@ -518,7 +538,8 @@ def cropGris(im, x, y, w, h):
 #             else:
 #                 rpix[i, j] = pix[i, j]
 #     return result
-
+#
+#
 # def add(a, b):
 #     newA, newB = normalize([a, b])
 #     pixA = newA.load()
@@ -533,7 +554,8 @@ def cropGris(im, x, y, w, h):
 #                          valA[1] + valB[1],
 #                          valA[2] + valB[2])
 #     return newImage
-
+#
+#
 # def product(a, b):
 #     newA, newB = normalize([a, b])
 #     pixA = newA.load()
@@ -549,7 +571,8 @@ def cropGris(im, x, y, w, h):
 #                          (valA[1] * valB[1])/255,
 #                          (valA[2] * valB[2])/255)
 #     return newImage
-
+#
+#
 # def copy(a, b, m):
 #     newA, newB, newM = normalize([a, b, m])
 #     pixA = newA.load()
@@ -564,7 +587,8 @@ def cropGris(im, x, y, w, h):
 #             else:
 #                 pix[i, j] = pixA[i, j]
 #     return newImage
-
+#
+#
 # def max(images):
 #     imgs = normalize(images)
 #     newImage = Image.new("RGB", imgs[0].size)
@@ -584,7 +608,8 @@ def cropGris(im, x, y, w, h):
 #             valB.sort()
 #             pix[x, y] = (valR[-1], valG[-1], valB[-1])
 #     return newImage
-
+#
+#
 # def min(images):
 #     imgs = normalize(images)
 #     newImage = Image.new("RGB", imgs[0].size)
@@ -604,7 +629,8 @@ def cropGris(im, x, y, w, h):
 #             valB.sort()
 #             pix[x, y] = (valR[0], valG[0], valB[0])
 #     return newImage
-
+#
+#
 # def mediane(images):
 #     imgs = normalize(images)
 #     newImage = Image.new("RGB", imgs[0].size)
@@ -626,7 +652,8 @@ def cropGris(im, x, y, w, h):
 #                          valG[len(valG)/2],
 #                          valB[len(valB)/2])
 #     return newImage
-
+#
+#
 # def avg(images):
 #     imgs = normalize(images)
 #     newImage = Image.new("RGB", imgs[0].size)
@@ -650,21 +677,23 @@ def cropGris(im, x, y, w, h):
 #                 b += valB[j]
 #             pix[x, y] = (r/len(valR), g/len(valG), b/len(valB))
 #     return newImage
-
+#
+#
 # def comparaisonHistoFactor(histoA, histoB, factor):
-#     #print histoA
+#     # print histoA
 #     hA = normHisto(histoA)
 #     hB = normHisto(histoB)
 #     distance = 0.
 #     for i in range(0, 255):
 #         distance += ((abs(hA[i] - hB[i]))**factor)/len(hA)
 #     return distance
-
+#
+#
 # def comparaisonHisto3channels2(histoA, histoB, factor):
-#         result = []
-#         finale = 0
-#         for c in range(3):
-#           result.append(comparaisonHistoFactor(histoA[c], histoB[c], factor))
-#         for i in range(0, 3):
-#             finale += result[i]
-#         print round((finale * 100), 2)
+#     result = []
+#     finale = 0.
+#     for c in range(3):
+#         result.append(comparaisonHistoFactor(histoA[c], histoB[c], factor))
+#     for i in range(0, 3):
+#         finale += result[i]
+#     return round((finale * 100.), 2)
