@@ -1,7 +1,7 @@
 from PIL import Image
 import sys
-from hsv import toHSV
-from fonctions import comparaisonHisto
+from fonctions import toHSV
+from fonctions import comparaisonHistoBhattacharyya
 from fonctions import buildHistogram
 
 
@@ -13,9 +13,9 @@ for i in range(0, len(ims)-1):
 histo1 = buildHistogram(ims[0])
 histo2 = buildHistogram(ims[1])
 # Mettre les histos dans un dossier histoHSV
-cmpHistoH = comparaisonHisto(histo1[0], histo2[0], 2)
-cmpHistoS = comparaisonHisto(histo1[1], histo2[1], 2)
-cmpHistoV = comparaisonHisto(histo1[2], histo2[2], 2)
+cmpHistoH = round((comparaisonHistoBhattacharyya(histo1[0], histo2[0]) * 100), 2)
+cmpHistoS = round((comparaisonHistoBhattacharyya(histo1[1], histo2[1]) * 100), 2)
+cmpHistoV = round((comparaisonHistoBhattacharyya(histo1[2], histo2[2]) * 100), 2)
 # print "H"
 print(cmpHistoH, end=",")
 # print "S"

@@ -2,10 +2,20 @@ from PIL import Image
 import sys
 from fonctions import comparaisonHisto3channels
 from fonctions import buildHistogram
+from fonctions import drawHistogram
+from variables import histosPath
 
-ims = [Image.open(f) for f in sys.argv[1:]]
-if(ims[0].mode == ims[1].mode):
-    histo1 = buildHistogram(ims[0])
-    histo2 = buildHistogram(ims[1])
-    cmpHisto = comparaisonHisto3channels(histo1, histo2, 2)
-    print(cmpHisto, end="")
+def histogramme(x):
+    im = Image.open(sys.argv[x])
+    if(im.mode == "RGB"):
+        parts = (sys.argv[x].split("/"))[1].split(".")
+        newIm = buildHistogram(im)
+        pathHistoFile = "/" + parts[0] + "_histo.jpg"
+        #drawHistogram(newIm).save(str(histosPath) + pathHistoFile)
+        return newIm
+    else:
+        return ""
+
+cmpHisto = comparaisonHisto3channels(histogramme(1), histogramme(2), 2)
+print(cmpHisto, end="")
+

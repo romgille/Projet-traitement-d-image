@@ -4,3 +4,7 @@ rapport.pdf
 scripts/**/*.pyc
 .*
 rapport/**/*.aux
+rapport/**/*.log
+rapport/**/*.out
+rapport/**/*.pdf
+rapport/**/*.toc
