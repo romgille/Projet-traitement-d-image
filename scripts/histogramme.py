@@ -11,4 +11,4 @@ if(im.mode == "RGB"):
     pathHistoFile = "/" + parts[0] + "_histo.jpg"
     drawHistogram(newIm).save(str(histosPath) + pathHistoFile)
 else:
-    print ""
+    print("")

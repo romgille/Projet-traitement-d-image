@@ -1,3 +1,12 @@
+# def comparaisonHistoBhattacharyyaHSV(histoA, histoB):
+#     hA = normHisto(histoA)
+#     hB = normHisto(histoB)
+#     distance = 0.
+#     for i in range(0, 255):
+#         distance += (hA[i] * hB[i]) ** 0.5
+#     newDistance = -log(distance)
+#     return round((newDistance * 100), 2)
+
 # def toRGB(im):
 #     rgb = Image.new("RGB", im.size)
 #     pix = im.load()

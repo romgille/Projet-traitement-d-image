@@ -1,7 +1,6 @@
 from PIL import Image
 from math import sqrt
 from math import log
-from math import fabs
 
 
 def comparaisonHistoBhattacharyya(histoA, histoB):
@@ -14,21 +13,12 @@ def comparaisonHistoBhattacharyya(histoA, histoB):
     return newDistance
 
 
-# def comparaisonHistoBhattacharyyaHSV(histoA, histoB):
-#     hA = normHisto(histoA)
-#     hB = normHisto(histoB)
-#     distance = 0.
-#     for i in range(0, 255):
-#         distance += (hA[i] * hB[i]) ** 0.5
-#     newDistance = -log(distance)
-#     return round((newDistance * 100), 2)
-    
-
 def comparaisonHisto3channels(histoA, histoB, factor):
     resultsBatta = []
     moyenneBatta = 0
     for c in range(3):
-        resultsBatta.append(comparaisonHistoBhattacharyya(histoA[c], histoB[c]))
+        resultBatta = comparaisonHistoBhattacharyya(histoA[c], histoB[c])
+        resultsBatta.append(resultBatta)
     for i in range(0, 3):
         moyenneBatta += resultsBatta[i]
     moyenneBatta /= 3.

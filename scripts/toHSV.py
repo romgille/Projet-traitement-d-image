@@ -13,9 +13,12 @@ for i in range(0, len(ims)-1):
 histo1 = buildHistogram(ims[0])
 histo2 = buildHistogram(ims[1])
 # Mettre les histos dans un dossier histoHSV
-cmpHistoH = round((comparaisonHistoBhattacharyya(histo1[0], histo2[0]) * 100), 2)
-cmpHistoS = round((comparaisonHistoBhattacharyya(histo1[1], histo2[1]) * 100), 2)
-cmpHistoV = round((comparaisonHistoBhattacharyya(histo1[2], histo2[2]) * 100), 2)
+cH = comparaisonHistoBhattacharyya(histo1[0], histo2[0])
+cS = comparaisonHistoBhattacharyya(histo1[1], histo2[1])
+cV = comparaisonHistoBhattacharyya(histo1[2], histo2[2])
+cmpHistoH = round((cH * 100), 2)
+cmpHistoS = round((cS * 100), 2)
+cmpHistoV = round((cV * 100), 2)
 # print "H"
 print(cmpHistoH, end=",")
 # print "S"

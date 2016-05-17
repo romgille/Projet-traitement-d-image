@@ -8,3 +8,4 @@ rapport/**/*.log
 rapport/**/*.out
 rapport/**/*.pdf
 rapport/**/*.toc
+rapport/rapport_particulier/rapport.md
