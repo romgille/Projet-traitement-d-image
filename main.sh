@@ -3,12 +3,13 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# rm -v rapport/rapport_particulier/rapport.md
+
+rm -fv rapport/rapport_particulier/rapport.md
 
 for i in photos/*
 do
   echo "Comparaison de la photo originale avec $i"
-#  ./run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
+  ./run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
 done
 
 set +e
