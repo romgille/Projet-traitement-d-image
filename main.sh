@@ -3,21 +3,20 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-rm -v rapport.md
+echo "Fichier,Bhattacharyya,Formes,Hue,Saturation,Value" > csv/valeurs.csv
 
 for i in photos/*
 do
   echo "Comparaison de la photo originale avec $i"
-  ./run.sh photos/original.jpg $i >> rapport.md
+  scripts-shell/run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
 done
 
-if which pandoc == "pandoc not found"
-then
-  echo "Vous n'avez pas pandoc, vous pouvez regarder le résultat dans le fichier rapport.md"
-else
-  echo "Vous avez pandoc ! On va convertir rapport.md en PDF"
-  echo "Création du rapport en PDF"
-  pandoc rapport.md -V geometry:margin=1in -o rapport.pdf
-fi
+
+#
+# read -p "Voulez-vous télécharger 'texlive-base' pour avoir un rapport badass créé juste pour vous? [y/N]" choice
+# case "$choice" in
+#   y|Y ) sudo apt-get install texlive-base;;
+#   * ) echo "Tant pis, vous aurez un rapport général avec nos photos";;
+# esac
 
 exit 0

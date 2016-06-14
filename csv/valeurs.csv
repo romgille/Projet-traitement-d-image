@@ -10,8 +10,11 @@ photos/rotation.jpg,0.04,58.03,0.1,0.01,0.01
 photos/saturate.jpg,0.94,0.51,1.5,0.58,0.72
 photos/sombre.jpg,6.44,12.6,5.02,7.39,6.9
 photos/terne.jpg,71.67,27.33,119.46,47.37,48.19
+<<<<<<< HEAD
 photos/contraste.jpg,photos/original.jpg,photos/original.jpg,photos/original.jpg,photos/original.jpg,35.07
 Ces deux images ont plus de 10 % de difference en terme de couleurs, on peut donc considerer qu'elles ne se ressemblent pas au niveau couleur.
 ,photos/original.jpg,35.07
 Ces deux images ont plus de 10 % de difference en terme de couleurs, on peut donc considerer qu'elles ne se ressemblent pas au niveau couleur.
 ,
+=======
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715

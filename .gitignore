@@ -1,5 +1,11 @@
 histogrammes/
 sobel/
 rapport.pdf
+<<<<<<< HEAD
 scripts/*.pyc
 scripts/__pycache__
+=======
+scripts/**/*.pyc
+.*
+rapport/**/*.aux
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715

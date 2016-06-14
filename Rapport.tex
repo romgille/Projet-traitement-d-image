@@ -3,6 +3,11 @@
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{bchart}
+\usepackage{datatool}
+\usepackage{pgfplotstable}
+\usepackage{array,booktabs}
+\usepackage{filecontents}
 \usepackage{fixltx2e} % provides \textsubscript
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -23,8 +28,8 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
 % Redefine \includegraphics so that, unless explicit options are
-% given, the image width will not exceed the width of the page.
-% Images get their normal width if they fit onto the page, but
+% given, the text = Image width will not exceed the width of the page.
+% text = Images get their normal width if they fit onto the page, but
 % are scaled down if they would overflow the margins.
 \makeatletter
 \def\ScaleIfNeeded{%
@@ -62,9 +67,9 @@
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
 \setcounter{secnumdepth}{0}
 
-\title{Analyse des comparaisons des photos}
+\title{Analyse des comparaisons des photos Version Alpha}
 \author{Romain Gille \& Yannick Ezvan}
-\date{}
+\date{\today}
 
 \begin{document}
 \maketitle
@@ -89,12 +94,21 @@
 
 Pour les comparaisons, nous utilisons deux procédés :
 
+<<<<<<< HEAD
 \begin{description}  
 \item[La distance de Bhattacharyya] qui est une mesure de la similarité de deux 
   distributions de probabilités discrètes. On la calcule après création 
   d'histogrammespour chaque image.
 \item[Le filtre de Sobel] qui permet une détection des contours. Nous comparons
   ensuite les deux images créées avec le filtre de Sobel pixel à pixel pour
+=======
+\begin{description}
+\item[La distance de Bhattacharyya] qui est une mesure de la similarité de deux
+  distributions de probabilités discrètes. On la calcule après création
+  d'histogrammes pour chaque text = Image.
+\item[Le filtre de Sobel] qui permet une détection des contours. Nous comparons
+  ensuite les deux text = Images créées avec le filtre de Sobel pixel à pixel pour
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
   avoir une comparaison des contours et donc des formes présentes sur la photo.
 \end{description}
 
@@ -109,13 +123,31 @@ Pour les comparaisons, nous utilisons deux procédés :
 \caption{Photo contraste}
 \end{figure}
 
+<<<<<<< HEAD
+=======
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  35 \% & 28 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 La comparaison de la photo originale avec la photo en
 contraste élevée nous donne comme résultat que les deux photos se
 ressemblent au niveau de leurs formes mais pas suffisamment d'un point
 de vue colorimétrique. \\
 Cela s'explique par le fait qu'augmenter les contrastes d'une photo change ses
+<<<<<<< HEAD
 couleurs et très peu sa forme (on a relevé seulement $28\%$ de différence par
 comparaison après l'application d'un filtre de Sobel contre $35\%$ de différence
+=======
+couleurs et très peu sa forme (on a relevé seulement $28 \%$ de différence par
+comparaison après l'application d'un filtre de Sobel contre $35 \%$ de différence
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 avec la distance de Bhattacharyya).
 
 \newpage
@@ -129,12 +161,31 @@ crop}\label{comparaison-avec-la-photo-avec-un-crop}
 \caption{Photo crop}
 \end{figure}
 
+<<<<<<< HEAD
+=======
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  0.27 \% & 51.16 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 \emph{Le crop est un procédé qui consiste à recadrer une photo}
 
 La comparaison de la photo originale avec la photo à laquelle nous avons
 appliqué un crop nous montre une différence très faible au niveau de la
+<<<<<<< HEAD
 couleur ($0.27\%$ de différence par le filtre de Bhattacharyya) contre
 une différenciation prononcée au niveau des formes ($51.16\%$ avec la
+=======
+couleur ($0.27 \%$ de différence par le filtre de Bhattacharyya) contre
+une différenciation prononcée au niveau des formes ($51.16 \%$ avec la
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 comparaison en Sobel). \\
 Cela s'explique par le fait qu'un crop est un redécoupage de la photo et qu
 donc certaines formes délimitables grâce au filtre de Sobel ne sont plus
@@ -152,10 +203,26 @@ inversées}\label{comparaison-avec-la-photo-aux-couleurs-inversuxe9es}
 \caption{Photo couleurs inversées}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  49.49 \% & 0 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+
 Les résultats de la comparaison de la photo originale avec la photo
 inversée nous montre une différence de formes nulle via la comparaison
+<<<<<<< HEAD
 des photos en Sobel et une différence de $49.49\%$ en distance de
 Bhattacharyya. \\ 
+=======
+des photos en Sobel et une différence de $49.49 \%$ en distance de
+Bhattacharyya. \\
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 Cela s'explique par le fait que l'inversion des couleurs ne change pas les
 formes de la photo.
 
@@ -170,10 +237,21 @@ lumineuse}\label{comparaison-avec-la-photo-plus-lumineuse}
 \caption{Photo plus lumineuse}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  51.53 \% & 12.43 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+
 On observe que la luminosité ajoutée à notre photo d'origine est
-suffisante pour donner une différence colorimétrique de $51.53\%$ par la
+suffisante pour donner une différence colorimétrique de $51.53 \%$ par la
 distance de Bhattacharyya. Par contre, le changement de luminosité ne
-change que très peu les contours des formes, seulement $12.43\%$ de
+change que très peu les contours des formes, seulement $12.43 \%$ de
 différence après application du filtre de Sobel.
 
 \newpage
@@ -187,16 +265,33 @@ poster}\label{comparaison-avec-la-photo-avec-effet-poster}
 \caption{Photo poster}
 \end{figure}
 
-La comparaison de cette image nous donne une différence de $16.35\%$
-pour la colorimétrie avec la distance de Bhattacharyya et de $16.79\%$
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  16.35 \% & 16.79 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+
+La comparaison de cette text = Image nous donne une différence de $16.35 \%$
+pour la colorimétrie avec la distance de Bhattacharyya et de $16.79 \%$
 pour les formes après application du filtre de Sobel. Ce sont des
 pourcentages similaires, cependant selon nos critères, la différence
-colorimétrique est trop élevée pour dire que les images se ressemblent.
+colorimétrique est trop élevée pour dire que les Images se ressemblent.
 Cependant pour la différence de formes via l'application du filtre de
 Sobel, le pourcentage est suffisamment faible pour considérer que les
+<<<<<<< HEAD
 images se ressemblent d'un point de vue des formes. \\
 À l'\oe il nu, on peut observer que les ombres sont vraiment délimités sur la
 photo poster, ce qui explique les $16\%$ de différence trouvés après
+=======
+Images se ressemblent d'un point de vue des formes. \\
+À l'\oe il nu, on peut observer que les ombres sont vraiment délimités sur la
+photo poster, ce qui explique les $16 \%$ de différence trouvés après
+>>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 application du filtre de Sobel.
 
 \newpage
@@ -210,10 +305,21 @@ rotation}\label{comparaison-avec-la-photo-avec-une-luxe9guxe8re-rotation}
 \caption{Photo rotation légère}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  0.64 \% & 53.58 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+
 Pour cette comparaison, on observe une très faible différence de
-couleurs (seulement $0.64\%$), car l'image est seulement retournée donc
+couleurs (seulement $0.64 \%$), car l'text = Image est seulement retournée donc
 les couleurs ne changent quasiment pas. Par contre la différence de
-formes est assez élevée car tous les pixels sont décalés ($53.58\%$ de
+formes est assez élevée car tous les pixels sont décalés ($53.58 \%$ de
 différence après application du filtre de Sobel).\\On constate donc que
 la rotation légère ne change pas beaucoup les couleurs de la photo mais
 majoritairement ses formes.
@@ -229,9 +335,19 @@ $90^{\circ}$}\label{comparaison-avec-la-photo-dune-rotation-de-90circ}
 \caption{Photo rotation $90^{\circ}$}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  0.04 \% & 58.03 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
 Contrairement à la photo précédente, cette rotation de $90^{\circ}$ ne
-découpe pas l'image donc la différence de couleur est encore plus faible
-($0.04\%$) alors que la différence de forme augmente encore ($58.03\%$).
+découpe pas l'text = Image donc la différence de couleur est encore plus faible
+($0.04 \%$) alors que la différence de forme augmente encore ($58.03 \%$).
 
 \newpage
 
@@ -244,9 +360,19 @@ découpe pas l'image donc la différence de couleur est encore plus faible
 \caption{Photo en saturation élevée}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  0.94 \% & 0.51 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
 On observe avec la comparaison de cette photo saturée que selon nos
-critères, ces deux photos se ressemblent ($0.94\%$ de différence pour la
-colorimétrie avec la distance de Bhattacharyya et $0.51\%$ de différence
+critères, ces deux photos se ressemblent ($0.94 \%$ de différence pour la
+colorimétrie avec la distance de Bhattacharyya et $0.51 \%$ de différence
 pour les formes avec l'application du filtre de Sobel).\\En effet, les
 couleurs sont légèrement moins ternes sur la photo saturée et les
 quelques contours décelés au filtre de Sobel sont dû aux points de
@@ -263,10 +389,20 @@ assombrie}\label{comparaison-avec-la-photo-assombrie}
 \caption{Photo sombre}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  6.44 \% & 12.6 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
 Comme pour la photo précédente, on peut considérer que les deux photos
 se ressemblent, cependant elles n'ont pas le même niveau de
-ressemblance. En effet celle-ci à une différence de $6.44\%$ pour la
-colorimétrie par distance de Bhattacharyya et de $12.6\%$ pour les
+ressemblance. En effet celle-ci à une différence de $6.44 \%$ pour la
+colorimétrie par distance de Bhattacharyya et de $12.6 \%$ pour les
 formes avec le filtre de Sobel. On peut donc conclure que
 l'assombrissement de la photo n'a qu'un faible impact sur la photo aussi
 bien d'un point de vue de la couleur que des formes.
@@ -282,11 +418,84 @@ terne}\label{comparaison-avec-la-photo-terne}
 \caption{Photo terne}
 \end{figure}
 
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  Distance de Bhattacharyya & Différences de formes \\
+  \hline
+  71.67 \% & 27.33 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
 Cette modification a un gros impact sur la photo originale, surtout au
-niveau des couleurs. On observe en effet $71.67\%$ de différence au
-niveau colorimétrique et $27.33\%$ de différence au niveau des formes.
+niveau des couleurs. On observe en effet $71.67 \%$ de différence au
+niveau colorimétrique et $27.33 \%$ de différence au niveau des formes.
 On peut observer sur la photo directement que toutes les couleurs ont
-changées ce qui explique les $71\%$. Les $27\%$ des formes sont dues aux
+changées ce qui explique les $71 \%$. Les $27 \%$ des formes sont dues aux
 bordures que ce filtre doit atténuer.
 
+\newpage
+
+\section{Synthèse des comparaisons}\label{synthese-des-comparaisons}
+
+\begin{center}
+\begin{tabular}{|c|c|c||c|}
+  \hline
+  Images & Distance de Bhattacharyya & Différences de formes
+    & Moyenne de différence \\
+  \hline
+  Contraste & 35 \% & 28 \% & 31.5 \% \\
+  \hline
+  Crop & 0.27 \% & 51.16 \% & 25.5 \% \\
+  \hline
+  Couleurs inversées & 49.49 \% & 0 \% & 24 \% \\
+  \hline
+  Lumineuse & 51.53 \% & 12.43 \% & 32 \% \\
+  \hline
+  Effet poster & 16.35 \% & 16.79 \% & 16.5 \% \\
+  \hline
+  Rotation légère & 0.64 \% & 53.58 \% & 27 \% \\
+  \hline
+  Rotation $90^{\circ}$ & 0.04 \% & 58.03 \% & 29 \% \\
+  \hline
+  Saturation & 0.94 \% & 0.51 \% & 0.70 \% \\
+  \hline
+  Sombre & 6.44 \% & 12.6 \% & 9.5 \% \\
+  \hline
+  Terne & 71.67 \% & 27.33 \% & 49.5 \% \\
+  \hline
+\end{tabular}
+\end{center}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics{diagramme.png}
+\caption{}
+\end{figure}
+
+\newpage
+\begin{center}
+\begin{bchart}[step=10,max=50,width=7in]
+        \bcbar[text = Image contraste]{31.5}
+            \smallskip
+        \bcbar[text = Image crop]{25.5}
+            \smallskip
+        \bcbar[text = Image couleur inversée]{24}
+            \smallskip
+        \bcbar[text = Image plus lumineuse]{32}
+            \smallskip
+        \bcbar[text = Image effet poster]{16.5}
+            \smallskip
+        \bcbar[text = Image rotation légère]{27}
+            \smallskip
+        \bcbar[text = Image rotation $90^{\circ}$]{29}
+            \smallskip
+        \bcbar[text = Image saturation]{0.70}
+            \smallskip
+        \bcbar[text = Image sombre]{9.5}
+            \smallskip
+        \bcbar[text = Image terne]{49.5}
+    \end{bchart}
+\end{center}
 \end{document}
