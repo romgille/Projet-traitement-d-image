@@ -11,11 +11,11 @@ def toHSV(im):
 		for x in range(im.size[0]):
 			r,g,b =  pix[x, y]
 			r,g,b = [v/255.0 for v in (r,g,b)]
-			#print r,g,b	
+			#print r,g,b
 			cmax = max(r,g,b)
-			cmin = min(r,g,b)		
+			cmin = min(r,g,b)
 			delta = cmax-cmin
-			#print cmin, cmax, delta			
+			#print cmin, cmax, delta
 			h = 0
 			if delta > 0:
 				if cmax >= r-epsilon and cmax <= r+epsilon :
@@ -47,7 +47,7 @@ def toRGB(im):
 			c = v*s
 			val = h/60.0
 			x = c*(1.0- abs((val-2*(int(val)/2)) - 1.0))
-			m = v-c		
+			m = v-c
 			r,g,b = c,x,0
 			if 60<=h and h<120:  r,g,b = x,c,0
 			elif 120<=h and h<180:  r,g,b = 0,c,x

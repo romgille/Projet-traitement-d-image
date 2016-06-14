@@ -2,3 +2,4 @@ histogrammes/
 sobel/
 rapport.pdf
 scripts/*.pyc
+scripts/__pycache__

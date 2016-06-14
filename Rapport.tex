@@ -74,17 +74,29 @@
 \setcounter{tocdepth}{3}
 \tableofcontents
 }
+
 \newpage
 
 \section{Photo originale}\label{photo-originale}
 
-\emph{Toutes les comparaisons sont faites avec la photo originale}
+\emph{Toutes les comparaisons sont faites avec la photo originale.}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics{photos/original.jpg}
 \caption{Photo original}
 \end{figure}
+
+Pour les comparaisons, nous utilisons deux procédés :
+
+\begin{description}  
+\item[La distance de Bhattacharyya] qui est une mesure de la similarité de deux 
+  distributions de probabilités discrètes. On la calcule après création 
+  d'histogrammespour chaque image.
+\item[Le filtre de Sobel] qui permet une détection des contours. Nous comparons
+  ensuite les deux images créées avec le filtre de Sobel pixel à pixel pour
+  avoir une comparaison des contours et donc des formes présentes sur la photo.
+\end{description}
 
 \newpage
 
@@ -97,14 +109,14 @@
 \caption{Photo contraste}
 \end{figure}
 
-On observe que la comparaison de la photo originale avec la photo en
+La comparaison de la photo originale avec la photo en
 contraste élevée nous donne comme résultat que les deux photos se
 ressemblent au niveau de leurs formes mais pas suffisamment d'un point
-de vue colorimétrique. Cela s'explique par le fait qu'augmenter les
-contrastes d'une photo change ses couleurs et très peu sa forme (on a
-relevé seulement $28\%$ de différence par comparaison après
-l'application d'un filtre de Sobel contre $35\%$ de différence avec la
-distance de Bhattacharyya).
+de vue colorimétrique. \\
+Cela s'explique par le fait qu'augmenter les contrastes d'une photo change ses
+couleurs et très peu sa forme (on a relevé seulement $28\%$ de différence par
+comparaison après l'application d'un filtre de Sobel contre $35\%$ de différence
+avec la distance de Bhattacharyya).
 
 \newpage
 
@@ -117,15 +129,17 @@ crop}\label{comparaison-avec-la-photo-avec-un-crop}
 \caption{Photo crop}
 \end{figure}
 
-La comparaison de la photo originale avec la photo à laquelle on a
+\emph{Le crop est un procédé qui consiste à recadrer une photo}
+
+La comparaison de la photo originale avec la photo à laquelle nous avons
 appliqué un crop nous montre une différence très faible au niveau de la
 couleur ($0.27\%$ de différence par le filtre de Bhattacharyya) contre
 une différenciation prononcée au niveau des formes ($51.16\%$ avec la
-comparaison en Sobel). Cela s'explique par le fait qu'un crop est un
-redécoupage de la photo et que donc certaines formes délimitables grâce
-au filtre de Sobel ne sont plus présentes sur la photo. Cependant les
-couleurs ne changent pas ce qui explique ce pourcentage de différence
-très faible au niveau colorimétrique.
+comparaison en Sobel). \\
+Cela s'explique par le fait qu'un crop est un redécoupage de la photo et qu
+donc certaines formes délimitables grâce au filtre de Sobel ne sont plus
+présentes sur la photo. Cependant les couleurs ne changent pas ce qui explique
+ce pourcentage de différence très faible au niveau colorimétrique.
 
 \newpage
 
@@ -141,8 +155,9 @@ inversées}\label{comparaison-avec-la-photo-aux-couleurs-inversuxe9es}
 Les résultats de la comparaison de la photo originale avec la photo
 inversée nous montre une différence de formes nulle via la comparaison
 des photos en Sobel et une différence de $49.49\%$ en distance de
-Bhattacharyya. Cela s'explique par le fait que l'inversion des couleurs
-ne change pas les formes de la photo.
+Bhattacharyya. \\ 
+Cela s'explique par le fait que l'inversion des couleurs ne change pas les
+formes de la photo.
 
 \newpage
 
@@ -179,9 +194,9 @@ pourcentages similaires, cependant selon nos critères, la différence
 colorimétrique est trop élevée pour dire que les images se ressemblent.
 Cependant pour la différence de formes via l'application du filtre de
 Sobel, le pourcentage est suffisamment faible pour considérer que les
-images se ressemblent d'un point de vue des formes. À l'\oe il nu, on
-peut observer que les ombres sont vraiment délimités sur la photo
-poster, ce qui explique les $16\%$ de différence trouvés après
+images se ressemblent d'un point de vue des formes. \\
+À l'\oe il nu, on peut observer que les ombres sont vraiment délimités sur la
+photo poster, ce qui explique les $16\%$ de différence trouvés après
 application du filtre de Sobel.
 
 \newpage

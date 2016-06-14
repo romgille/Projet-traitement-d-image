@@ -1,6 +1,6 @@
 import Image
 import sys
-import math 
+import math
 def get_average(im):
     val = 0.0
     pix = im.load()
@@ -48,5 +48,4 @@ if __name__ == "__main__":
     im1 = Image.open(sys.argv[1]).convert("L")
     im2 = Image.open(sys.argv[2]).convert("L")
     im,im2 = normalizeImages((im1,im2))
-    
     print(ncc(im, im2))

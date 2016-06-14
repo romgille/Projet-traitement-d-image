@@ -36,9 +36,9 @@ fi
 
 for args in $@
 do
-  
+
   # Créer les histogrammes des images concernés
-  python scripts/histogramme.py $args
+python scripts/histogramme.py $args
 
 done
 

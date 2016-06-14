@@ -33,7 +33,7 @@ def bhattacharyyaCoeff(histoA, histoB):
     if distance > 1:
         return 1
     return distance
-    
+
 
 #return distance between two histograms of gray images
 def bhattacharyya(histoA, histoB):
