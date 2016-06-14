@@ -5,9 +5,9 @@ IFS=$'\n\t'
 
 
 rm -fv rapport/rapport_particulier/rapport.md
+touch rapport/rapport_particulier/rapport.md
 
-for i in photos/*
-do
+for i in photos/*; do
   echo "Comparaison de la photo originale avec $i"
   ./run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
 done
