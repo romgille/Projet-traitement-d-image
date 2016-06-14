@@ -3,7 +3,6 @@ import sys
 
 
 def toHSV(im):
-<<<<<<< HEAD
 	hsv = Image.new("RGB", im.size)
 	pix = im.load()
 	hsvPix = hsv.load()
@@ -67,33 +66,7 @@ if __name__ == "__main__":
 	hsv.show()
 	rgb = toRGB(hsv)
 	rgb.show()
-=======
-    hsv = Image.new("RGB", im.size)
-    pix = im.load()
-    hsvPix = hsv.load()
-    epsilon = 0.00001
-    for y in range(im.size[1]):
-        for x in range(im.size[0]):
-            r, g, b = pix[x, y]
-            r, g, b = [v/255.0 for v in (r, g, b)]
-            cmax = max(r, g, b)
-            cmin = min(r, g, b)
-            delta = cmax-cmin
-            h = 0
-            if delta > 0:
-                if cmax >= r-epsilon and cmax <= r+epsilon:
-                    v = (g-b)/delta
-                    h = 60*(v-6*(int(v)/6))
-                elif cmax >= g-epsilon and cmax <= g+epsilon:
-                    h = 60*(((b-r)/delta) + 2)
-                else:
-                    h = 60*(((r-g)/delta) + 4)
-            s = 0
-            if cmax > 0:
-                s = delta/cmax
-            v = cmax
-            hsvPix[x, y] = (int(h*2.55/3.6), int(s*255), int(v*255))
-    return hsv
+
 
 # def toRGB(im):
 #     rgb = Image.new("RGB", im.size)
@@ -119,4 +92,3 @@ if __name__ == "__main__":
 #             r,g,b = [int((p+m)*255) for p in (r,g,b) ]
 #             rgbPix[X,Y] = r,g,b
 #     return rgb
->>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715

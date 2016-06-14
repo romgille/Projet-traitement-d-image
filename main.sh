@@ -3,16 +3,17 @@
 set -euo pipefail
 IFS=$'\n\t'
 
+rm -v rapport/rapport_particulier/rapport.md
 echo "Fichier,Bhattacharyya,Formes,Hue,Saturation,Value" > csv/valeurs.csv
 
 for i in photos/*
 do
   echo "Comparaison de la photo originale avec $i"
-  scripts-shell/run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
+  ./run.sh photos/original.jpg $i >> rapport/rapport_particulier/rapport.md
 done
 
 
-#
+
 # read -p "Voulez-vous télécharger 'texlive-base' pour avoir un rapport badass créé juste pour vous? [y/N]" choice
 # case "$choice" in
 #   y|Y ) sudo apt-get install texlive-base;;

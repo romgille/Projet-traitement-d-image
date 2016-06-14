@@ -1,31 +1,13 @@
 from PIL import Image
 import sys
-<<<<<<< HEAD
-from fonctions import toHSV
-from fonctions import comparaisonHistoBhattacharyya
-=======
 from hsv import toHSV
 from fonctions import comparaisonHisto
->>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 from fonctions import buildHistogram
 
 
 ims = [Image.open(f) for f in sys.argv[1:]]
 for i in range(0, len(ims)-1):
     if ims[i].mode == ims[i+1].mode:
-<<<<<<< HEAD
-        toHSV(ims[i], ims[i].load())
-# Mettre les images créées dans un dossier image HSV
-histo1 = buildHistogram(ims[0], ims[0].load())
-histo2 = buildHistogram(ims[1], ims[1].load())
-# Mettre les histos dans un dossier histoHSV
-cH = comparaisonHistoBhattacharyya(histo1[0], histo2[0])
-cS = comparaisonHistoBhattacharyya(histo1[1], histo2[1])
-cV = comparaisonHistoBhattacharyya(histo1[2], histo2[2])
-cmpHistoH = round((cH * 100), 2)
-cmpHistoS = round((cS * 100), 2)
-cmpHistoV = round((cV * 100), 2)
-=======
         toHSV(ims[i])
 # Mettre les images créées dans un dossier image HSV
 histo1 = buildHistogram(ims[0])
@@ -34,7 +16,6 @@ histo2 = buildHistogram(ims[1])
 cmpHistoH = comparaisonHisto(histo1[0], histo2[0], 2)
 cmpHistoS = comparaisonHisto(histo1[1], histo2[1], 2)
 cmpHistoV = comparaisonHisto(histo1[2], histo2[2], 2)
->>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 # print "H"
 print(cmpHistoH, end=",")
 # print "S"

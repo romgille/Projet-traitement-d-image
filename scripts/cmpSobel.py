@@ -17,7 +17,6 @@ for i in range(0, 2):
     pathSobelFile = "/" + parts[0] + "_sobel.jpg"
     ims[i].save(str(sobelPath) + pathSobelFile)
 
-<<<<<<< HEAD
 if ims[0].mode == "L":
     cmpDifImgsGris = compDifImagesGris(diffGris(ims[0], ims[1]))
     print(cmpDifImgsGris)
@@ -25,9 +24,3 @@ if ims[0].mode == "L":
         print("Ces deux images ont moins de 30 % de difference en terme de formes, on peut donc considerer qu'elles se ressemblent au niveau formes.")
     else:
         print("Ces deux images ont plus de 30 % de difference en terme de formes, on peut donc considerer qu'elles ne se ressemblent pas au niveau formes.")
-=======
-if (ims[0].mode == "L") and (ims[1].mode == "L"):
-    dg = diffGris(ims[0], ims[1])
-    cmpDifImgsGris = compDifImagesGris(dg)
-    print(cmpDifImgsGris, end="")
->>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715

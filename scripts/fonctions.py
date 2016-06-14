@@ -60,12 +60,7 @@ def buildHistogram(im):
         histo = (H, S, V)
         return histo
     else:
-<<<<<<< HEAD
-        print("Votre image n'est pas en RGB")
-=======
         print("Votre image n'est pas en RGB ou en HSV")
-
->>>>>>> 458dc6b21a8ef21a5b0ab793b77153439c20e715
 
 def maxValeur(histo):
     maxV = 0
