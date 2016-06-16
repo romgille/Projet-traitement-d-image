@@ -1,7 +1,7 @@
 histogrammes/
 sobel/
 /Rapport.pdf
-
+rapport/rapport_particulier/rapport.md
 # Created by https://www.gitignore.io/api/vim,latex,python
 
 ### Vim ###
