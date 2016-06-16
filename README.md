@@ -5,7 +5,8 @@ Contributeurs : Romain Gille (romgille), Yannick Ezvan (nonock).
 
 ##But du programme
 
-Faire la comparaison entre deux images et dire ce qui se ressemble et ce qui diffère.
+Faire la comparaison entre deux images et dire ce qui se ressemble et ce qui
+diffère.
 
 ##Critères de ressemblance :
 
@@ -15,52 +16,34 @@ Faire la comparaison entre deux images et dire ce qui se ressemble et ce qui dif
 
 ##Déroulement du programme
 
-* Test du nombre d'images passé en arguments
-* Création des histogrammes des images concernées
-* Comparaison des histogrammes en différents facteurs
-* Comparaison de la différence des images
-(D'autre à venir)
+Les images sont cherchés dans le dossier `photos/`.
 
+La photo ayant pour nom `original.jpg` est la photo à laquelle sera comparée
+toutes les autres photos présentes dans le dossier.
 
-**Comparer deux images :**
+Un histogramme pour chaque photo dans le dossier `histogramme/`.
 
-* Colorimétrie (Histogramme) distance de Bhattacharyya
-* Position des formes avec filtre de sobel
-* Différence pixel par pixel
+Ces histogrammes servent à calculer la distance de Bhattacharyya pour les
+différentes photos.
 
+Ensuite, les images sont comparées pixel à pixel sur leurs couleurs.
 
-# How To
+À partir des photos initiales, on crée ensuite des sobels qui sont stockés dans
+le dossier `sobel/` et sont ensuite comparés pixel à pixel pour permettre de
+détecter leur différence de formes.
 
-Clone the repository :
+Enfin, tous ces résultats sont lors du déroulement du programme écrites dans le
+fichier `rapport/rapport_particulier/rapport.md`. Le programme propose à la fin
+de créer un PDF avec ce fichier pour avoir un meilleur rendu.
 
-`git clone https://github.com/romgille/Projet-traitement-d-image.git`
+**La distance de Bhattacharyya** est une mesure de la similarité de deux
+distributions de probabilités discrètes. On la calcule après création
+d’histogrammes pour chaque image.
 
-Put the picture you want to compare in 'photos' folder, the 'original.jpg'
-must be the source picture you want to compare the others with.
+**Le filtre de Sobel** permet une détection des contours. Nous comparons
+ensuite les deux images créées avec le filtre de Sobel pixel à pixel pour avoir
+une comparaison des contours et donc des formes présentes sur la photo.
 
-## For all the pictures in your "photos" folder :
-
-Run the script :
-
-`./main.sh`
-
-if it does not work, change the mod of the file :
-
-`chmod +x main.sh`
-
-and try to run the script again.
-
-## If you want to choose your pictures to compare :
-
-Run the script :
-
-`./run.sh photos/your-picture1.jpg photos/your-picture2.jpg`
-
-if it does not work, change the mod of the file :
-
-`chmod +x run.sh`
-
-and try to run the script again.
 
 ##Liens photos :
 [Originale](http://farm9.static.flickr.com/8329/8086409595_92b9bb908a_b.jpg)

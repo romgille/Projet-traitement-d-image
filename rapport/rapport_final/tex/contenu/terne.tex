@@ -10,7 +10,7 @@ terne}\label{comparaison-avec-la-photo-terne}
 \begin{table}[htbp]
 \centering
 \begin{tabular}{llr}
-\bfseries Formes &
+\bfseries Formes (\%)&
 \bfseries Bhattacharyya (\%)%
 \DTLforeach*[\DTLiseq{\fichier}{photos/terne.jpg}]{valeurs}{%
 \fichier=Fichier, \formes=Formes,\bhatta=Bhattacharyya, \hue=Hue, \saturation=Saturation, \value=Value}{%
@@ -20,8 +20,10 @@ terne}\label{comparaison-avec-la-photo-terne}
 \end{table}
 
 Cette modification a un gros impact sur la photo originale, surtout au niveau
-des couleurs. On observe en effet $71.67 \%$ de différence au niveau
-colorimétrique et $27.33 \%$ de différence au niveau des formes. On peut
-observer sur la photo directement que toutes les couleurs ont changées ce qui
-explique les $71 \%$. Les $27 \%$ des formes sont dues aux bordures que ce
-filtre doit atténuer.
+des couleurs.
+
+On observe en effet $71.67 \%$ de différence au niveau colorimétrique et
+$27.33 \%$ de différence au niveau des formes. On peut observer sur la photo
+directement que toutes les couleurs ont changées ce qui explique les
+$71.67 \%$. Les $27.33 \%$ des formes sont dues aux bordures que ce filtre doit
+atténuer.
